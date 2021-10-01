@@ -1,0 +1,51 @@
+@import '../../styles//variables.scss';
+
+.notFoundContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $light-baby-blue;
+
+  & h1 {
+    font-size: 160px;
+    margin: 0;
+    font-weight: 900;
+    letter-spacing: 20px;
+  }
+  & p {
+    text-align: center;
+  }
+
+  & .cta-btn {
+    text-decoration: none;
+    background-color: $light-baby-blue;
+    color: $white;
+    padding: 12px 24px;
+    border: 2px solid $light-baby-blue;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.4s;
+    margin-top: 2rem;
+    border-radius: 50px;
+  }
+  & .cta-btn:hover {
+    background-color: transparent;
+    color: $dark-baby-blue;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .notFoundContainer {
+    & h1 {
+      font-size: 100px;
+      letter-spacing: 10px;
+    }
+    & p {
+      text-align: center;
+    }
+  }
+}
