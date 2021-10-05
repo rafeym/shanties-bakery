@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: $light-baby-blue;
+  color: $black;
 
   & h1 {
     font-size: 160px;
@@ -21,10 +21,10 @@
 
   & .cta-btn {
     text-decoration: none;
-    background-color: $light-baby-blue;
+    background-color: $black;
     color: $white;
     padding: 12px 24px;
-    border: 2px solid $light-baby-blue;
+    border: 2px solid $black;
     font-size: 14px;
     text-transform: uppercase;
     transition: 0.4s;
@@ -33,7 +33,7 @@
   }
   & .cta-btn:hover {
     background-color: transparent;
-    color: $dark-baby-blue;
+    color: $black;
     cursor: pointer;
   }
 }
