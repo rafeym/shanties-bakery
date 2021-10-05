@@ -74,6 +74,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <div className='copyright'>&copy;Shantie's Bakery 2021</div>
     </footer>
   )
 }
