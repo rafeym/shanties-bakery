@@ -1,17 +1,17 @@
 import React from 'react'
 
-import NotFoundComponent from '../components/NotFound/NotFound'
 import Header from '../components/Navbar/Header'
 import Footer from '../components/Footer/Footer'
+import LoginForm from '../components/Login/Login'
 
-const NotFound = () => {
+const Login = () => {
   return (
     <>
       <Header />
-      <NotFoundComponent />
+      <LoginForm />
       <Footer />
     </>
   )
 }
 
-export default NotFound
+export default Login
