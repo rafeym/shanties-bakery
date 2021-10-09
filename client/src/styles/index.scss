@@ -14,3 +14,17 @@ ul {
 a {
   text-decoration: none;
 }
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-container-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  opacity: 0.75;
+}
