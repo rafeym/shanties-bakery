@@ -4,6 +4,13 @@ const { check, validationResult } = require('express-validator')
 
 const User = require('../models/User')
 
+// Token Gen
+const createToken = (user) => {
+  return jwt.sign({ user }, process.env.JWT_SECRET, {
+    expiresIn: '7d',
+  })
+}
+
 // @route   POST api/user/register
 // @desc    Register user
 // @access  Public
@@ -16,6 +23,8 @@ module.exports.registerValidations = [
 ]
 
 module.exports.registerUser = async (req, res) => {
+  const { name, email, password } = req.body
+
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
@@ -24,7 +33,6 @@ module.exports.registerUser = async (req, res) => {
     })
   }
 
-  const { name, email, password } = req.body
   try {
     const user = await User.findOne({ email })
 
@@ -39,41 +47,25 @@ module.exports.registerUser = async (req, res) => {
       })
     }
 
-    // If no user with given email
-    const newUser = new User({
-      name,
-      email,
-      password,
-    })
-
-    // encrypt pass
     const salt = await bcrypt.genSalt(10)
-    // save pass
-    newUser.password = await bcrypt.hash(password, salt)
+    const hashPass = await bcrypt.hash(password, salt)
 
-    await newUser.save()
+    try {
+      const newUser = await User.create({
+        name,
+        email,
+        password: hashPass,
+      })
 
-    // payload to gen token
-    const payload = {
-      user: {
-        id: newUser.id,
-      },
+      // Create auth token
+      const token = createToken(newUser)
+
+      return res.status(200).json({ msg: 'Account created!', token })
+    } catch (error) {
+      return res.status(500).json({ errors: error })
     }
-
-    jwt.sign(
-      payload,
-      process.env.JWT_SECRET,
-      {
-        expiresIn: 3600,
-      },
-      (err, token) => {
-        if (err) throw err
-        res.json({ token })
-      }
-    )
   } catch (error) {
-    console.log(error.message)
-    res.status(500).send('Server error')
+    return res.status(500).json({ errors: error })
   }
 }
 
@@ -99,59 +91,22 @@ module.exports.loginUser = async (req, res) => {
   try {
     const user = await User.findOne({ email })
 
-    if (!user) {
-      return res.status(400).json({
-        errors: [
-          {
-            msg: 'No account with that email',
-          },
-        ],
-      })
-    }
-    const isMatch = await bcrypt.compare(password, user.password)
-
-    if (!isMatch) {
-      return res.status(400).json({
-        errors: [
-          {
-            msg: 'Incorrect email or password',
-          },
-        ],
-      })
-    }
-
-    // payload for jwt
-    const payload = {
-      user: {
-        id: user.id,
-      },
-    }
-
-    jwt.sign(
-      payload,
-      process.env.JWT_SECRET,
-      {
-        expiresIn: 3600,
-      },
-      (err, token) => {
-        if (err) throw err
-        res.json({ token })
+    if (user) {
+      const matchPass = await bcrypt.compare(password, user.password)
+      if (matchPass) {
+        const token = createToken(user)
+        return res.status(200).json({ msg: 'Login successful!', token })
+      } else {
+        return res
+          .status(401)
+          .json({ errors: [{ msg: 'Incorrect email or password' }] })
       }
-    )
+    } else {
+      return res
+        .status(404)
+        .json({ errors: [{ msg: 'No account associated with that email' }] })
+    }
   } catch (error) {
-    console.log(error.message)
-    res.status(500).send('Server error')
-  }
-}
-
-// @route   GET api/user/
-// @desc    Get user information
-// @access  Private
-module.exports.getUserInfo = async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select('-password')
-    return res.json(user)
-  } catch (error) {
-    return res.status(500).send('Server Error')
+    return res.status(500).json({ errors: error })
   }
 }

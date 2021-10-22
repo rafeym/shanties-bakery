@@ -1,23 +1,14 @@
 const jwt = require('jsonwebtoken')
 
-module.exports = function (req, res, next) {
-  // Get token from header
-  const token = req.header('x-auth-token')
+module.exports = (req, res, next) => {
+  const authHeader = req.headers.authorization
 
-  if (!token) {
-    return res.status(401).json({
-      msg: 'Session expired. Please login again',
-    })
-  }
+  const token = authHeader.split('Bearer')[1]
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    // Set user id in req.user
-    req.user = decoded.user
+    const verified = jwt.verify(token, process.env.JWT_SECRET)
     next()
   } catch (error) {
-    res.status(401).json({
-      msg: 'Session expired',
-    })
+    return res.status(401).json({ msg: 'Session expired.' })
   }
 }
