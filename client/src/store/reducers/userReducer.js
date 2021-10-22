@@ -1,36 +1,56 @@
+import jwt_decode from 'jwt-decode'
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  USER_LOADED,
-  USER_FAIL,
   LOGOUT,
   SET_LOADING,
 } from '../types/index'
 
 const initState = {
-  token: localStorage.getItem('token'),
-  isAuthenticated: null,
+  token: '',
   loading: false,
   user: null,
+}
+
+const verifyToken = (token) => {
+  const decodedToken = jwt_decode(token)
+
+  const expiresIn = new Date(decodedToken.exp * 1000)
+
+  if (new Date() > expiresIn) {
+    localStorage.removeItem('token')
+    return null
+  } else {
+    return decodedToken
+  }
+}
+
+const token = localStorage.getItem('token')
+if (token) {
+  const decoded = verifyToken(token)
+  if (decoded) {
+    initState.token = token
+    const { user } = decoded
+    initState.user = user
+  }
 }
 
 export const userReducer = (state = initState, action) => {
   const { type, payload } = action
   switch (type) {
-    case USER_LOADED:
-      return {
-        ...state,
-        user: payload,
-        isAuthenticated: true,
-        loading: false,
-      }
     case LOGIN_SUCCESS:
-      localStorage.setItem('token', payload.token)
+      const decoded = verifyToken(payload)
+      const { user } = decoded
       return {
         ...state,
-        ...payload,
-        isAuthenticated: true,
+        token: payload,
+        loading: false,
+        user: user,
+      }
+    case LOGIN_FAIL:
+      return {
+        ...state,
         loading: false,
       }
     case SET_LOADING:
@@ -39,16 +59,12 @@ export const userReducer = (state = initState, action) => {
         ...state,
         loading: true,
       }
-    case LOGIN_FAIL:
-    case USER_FAIL:
     case LOGOUT:
       localStorage.removeItem('token')
       return {
         ...state,
-        token: null,
-        isAuthenticated: false,
-        loading: false,
-        user: null,
+        token: '',
+        user: '',
       }
     default:
       return state
