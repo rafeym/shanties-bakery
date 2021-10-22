@@ -44,17 +44,19 @@
   width: 328px;
 }
 
-form input[type='text'],
-form input[type='email'],
-form input[type='password'] {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 8px;
-  border: 1px solid rgb(194, 194, 194);
-  padding: 1em;
-  margin-bottom: 1.25rem;
-  font-size: 0.875rem;
+.login-form {
+  & input[type='text'],
+  input[type='email'],
+  input[type='password'] {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid rgb(194, 194, 194);
+    padding: 1em;
+    margin-bottom: 1.25rem;
+    font-size: 0.875rem;
+  }
 }
 
 .split-screen label {

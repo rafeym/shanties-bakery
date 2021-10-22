@@ -35,7 +35,7 @@ const Login = () => {
       ) : (
         <div className='split-screen'>
           <div className='right'>
-            <form onSubmit={onSubmit}>
+            <form className='login-form' onSubmit={onSubmit}>
               <div className='copy'>
                 <h2>Login</h2>
               </div>
