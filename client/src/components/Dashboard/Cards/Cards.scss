@@ -1,0 +1,57 @@
+@import '../../../styles/variables.scss';
+
+.d-main {
+  padding: 2rem 1.5rem;
+  background: #f1f5f9;
+  min-height: calc(100vh - 90px);
+}
+
+.d-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  margin-top: 1rem;
+}
+
+.card-single {
+  display: flex;
+  justify-content: space-between;
+  background: $white;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.card-single span:last-child {
+  color: $royal-blue;
+}
+
+.card-single span:first-child {
+  font-size: 3rem;
+}
+
+@media only screen and (max-width: 960px) {
+  .d-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .d-main {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .d-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .d-main {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .d-cards {
+    grid-template-columns: 100%;
+  }
+  .d-main {
+    padding: 2rem 1.5rem;
+  }
+}

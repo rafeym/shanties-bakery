@@ -1,20 +1,18 @@
 import React from 'react'
+import Cards from '../../components/Dashboard/Cards/Cards'
+import Charts from '../../components/Dashboard/Charts/Charts'
 
 import Navigation from '../../components/Dashboard/Navigation/Navigation'
+import Table from '../../components/Dashboard/Table/Table'
 
 const Admin = () => {
   return (
     <>
       <Navigation />
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-        }}
-      >
-        <h3>Dashboard Page</h3>
+      <div className='d-main'>
+        <Cards />
+        <Table />
+        <Charts />
       </div>
     </>
   )

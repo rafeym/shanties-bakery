@@ -1,0 +1,102 @@
+@import '../../../styles/variables.scss';
+
+.recent-grid {
+  margin-top: 3.5rem;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: 100% auto;
+}
+
+.card {
+  background: $white;
+  border-radius: 5px;
+}
+
+.card-header {
+  padding: 1rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.card-header .order-cta-btn {
+  background: $royal-blue;
+  color: $white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid $royal-blue;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead tr {
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+thead td {
+  font-weight: 700;
+}
+
+td {
+  padding: 0.5rem 2rem;
+  color: $black;
+}
+
+td .status {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+tr td:last-child {
+  display: flex;
+  align-items: center;
+}
+
+.status.not-complete {
+  background: red;
+}
+
+.status.complete {
+  background: green;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-action-btn {
+  font-size: 20px;
+}
+
+.table-action-btn:last-child {
+  margin-left: 5px;
+}
+
+.table-action-btn:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 960px) {
+  .recent-grid {
+    grid-template-columns: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .recent-grid {
+    grid-template-columns: 100%;
+  }
+}

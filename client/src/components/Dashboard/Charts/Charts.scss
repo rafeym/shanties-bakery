@@ -1,0 +1,39 @@
+.charts-grid {
+  display: grid;
+  margin-top: 3.5rem;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.charts {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 5px;
+  justify-content: center;
+  display: flex;
+}
+
+.chart-container {
+  width: 600px;
+}
+
+@media only screen and (max-width: 1390px) {
+  .charts-grid {
+    grid-template-columns: 100%;
+  }
+  .chart-container {
+    width: 900px;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .charts-grid {
+    grid-template-columns: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 100%;
+  }
+}
