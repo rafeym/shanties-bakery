@@ -1,0 +1,83 @@
+@import '../../../../styles/variables.scss';
+
+.form-container {
+  //   background: $pink;
+  width: 70%;
+  min-width: 420px;
+  padding: 35px 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 10px;
+
+  & h1 {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: left;
+    color: $black;
+  }
+  & p {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    text-align: left;
+    color: #606060;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  & form {
+    width: 100%;
+    position: relative;
+    margin: 30px auto 0 auto;
+
+    & .form-row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 20px 30px;
+      margin-bottom: 20px;
+
+      & label {
+        color: $black;
+        font-size: 14px;
+      }
+      & textarea {
+        resize: none;
+      }
+      & textarea:focus,
+      input:focus {
+        outline: none;
+        border-color: $black;
+      }
+      & textarea,
+      input {
+        width: 100%;
+        font-weight: 400;
+        padding: 12px 10px;
+        border-radius: 5px;
+        border: 1.2px solid $royal-blue;
+        margin-top: 5px;
+      }
+    }
+    & button {
+      border: none;
+      padding: 10px 20px;
+      background: $royal-blue;
+      color: $white;
+      border: 1px solid $royal-blue;
+      border-radius: 5px;
+      &:hover {
+        background: transparent;
+        color: $royal-blue;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .form-container {
+    margin-top: 10em;
+  }
+}
