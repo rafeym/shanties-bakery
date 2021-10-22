@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -17,6 +17,8 @@ import Admin from './Pages/Dashboard/Home'
 import Orders from './Pages/Dashboard/Orders'
 import Completed from './Pages/Dashboard/Completed'
 import Inventory from './Pages/Dashboard/Inventory'
+import CreateProduct from './Pages/Dashboard/CreateProduct'
+import UpdateProduct from './Pages/Dashboard/UpdateProduct'
 
 import ScrollToTop from './helper/ScrollToTop'
 import { ToastContainer } from 'react-toastify'
@@ -25,20 +27,12 @@ import PrivateRoute from './private/PrivateRoute'
 import RouteLinks from './private/RouteLinks'
 
 import setAuthToken from './helper/setAuthToken'
-import { loadUserAction } from './store/actions/userActions'
-import { SET_LOADING } from './store/types'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token)
 }
 
 function App() {
-  useEffect(() => {
-    if (localStorage.token !== null) {
-      store.dispatch({ type: SET_LOADING })
-      store.dispatch(loadUserAction())
-    }
-  }, [])
   return (
     <>
       <Provider store={store}>
@@ -55,7 +49,21 @@ function App() {
             <PrivateRoute path='/dashboard' exact component={Admin} />
             <PrivateRoute path='/orders' exact component={Orders} />
             <PrivateRoute path='/completed' exact component={Completed} />
-            <PrivateRoute path='/inventory' exact component={Inventory} />
+            <PrivateRoute
+              path='/inventory/:page?'
+              exact
+              component={Inventory}
+            />
+            <PrivateRoute
+              path='/create-product'
+              exact
+              component={CreateProduct}
+            />
+            <PrivateRoute
+              path='/update-product/:id'
+              exact
+              component={UpdateProduct}
+            />
             <Route component={NotFound} />
           </Switch>
         </Router>
