@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .small-container {
-  max-width: 1500px;
+  max-width: 1170px;
   margin: auto;
   padding-left: 25px;
   padding-right: 20px;
@@ -11,22 +11,16 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .single-product {
   margin-top: 80px;
-}
-
-.small-img-row {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  min-height: 70vh;
 }
 
 .col-2 img {
   max-width: 100%;
-  padding: 50px 0;
 }
 
 .small-img-col {
@@ -70,12 +64,12 @@
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  /* border: 2px solid red; */
+  // /* border: 2px solid red; */
 }
 
 .count {
   display: flex;
-  margin-right: 10%;
+  // margin-right: 10%;
   flex-direction: column;
 }
 
@@ -105,7 +99,7 @@
 }
 
 .prod-details {
-  /* border: 2px solid black; */
+  // border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -113,13 +107,13 @@
 }
 
 .prod-details p {
-  font-weight: 300;
+  font-weight: 500;
   color: #000;
 }
 
 .prod-details p span {
-  color: rgb(194, 194, 194);
-  font-weight: 100;
+  color: $black;
+  font-weight: 200;
   text-transform: uppercase;
 }
 
@@ -128,10 +122,12 @@
   background: $black;
   border: 2px solid $black;
   color: #fff;
-  padding: 8px 30px;
-  margin: 30px 0;
-  border-radius: 10px;
+  padding: 10px 27px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  border-radius: 0.3rem;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .btn:hover {
@@ -140,26 +136,21 @@
   cursor: pointer;
 }
 
-.breadcrumb {
-  text-decoration: none;
-  color: #000;
-}
-
 @media screen and (min-width: 1100px) {
-  .small-container {
-    margin-top: 150px;
-    /* background: red; */
-  }
+  // .small-container {
+  //   margin-top: 150px;
+  //   /* background: red; */
+  // }
 }
 
 @media screen and (max-width: 500px) {
   .select-container {
     flex-wrap: wrap;
   }
-  .count {
-    margin-bottom: 20px;
-  }
   .small-container {
     margin-top: 50px;
   }
+}
+
+@media screen and (max-width: 280px) {
 }

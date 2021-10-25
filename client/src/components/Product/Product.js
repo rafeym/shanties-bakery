@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 
-import { Link } from 'react-router-dom'
-
 import './Product.scss'
 
 const Product = ({ product }) => {
   const { cloudinary_secure_url, description, name, price, allergens } = product
   const [qty, setQty] = useState(1)
   const qtyPlus = () => {
-    setQty(qty + 1)
+    if (qty === 10) {
+      return
+    } else {
+      setQty(qty + 1)
+    }
   }
 
   const qtyMinus = () => {
@@ -18,11 +20,12 @@ const Product = ({ product }) => {
       setQty(qty - 1)
     }
   }
+
   return (
     <div className='small-container single-product'>
       <div className='row'>
         <div className='col-2'>
-          <img src={cloudinary_secure_url} alt={name} width='100%' />
+          <img src={cloudinary_secure_url} alt={name} />
         </div>
         <div className='col-2'>
           <h1>{name}</h1>
