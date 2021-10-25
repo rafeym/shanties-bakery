@@ -8,8 +8,14 @@ import './ProductCard.scss'
 const ProductCard = ({ name, price, img, id }) => {
   return (
     <div className='product-box'>
-      <img src={img} alt='' />
-      <strong>{name}</strong>
+      <Link to={`/product/${id}`} className='product-info-image'>
+        <img src={img} alt={name} />
+      </Link>
+      <strong>
+        <Link to={`/product/${id}`} className='product-link-name'>
+          {name}
+        </Link>
+      </strong>
       <span className='p-quantity'>Dozen</span>
       <span className='p-price'>${price}</span>
       <div className='cart-btn'>
