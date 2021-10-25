@@ -19,6 +19,7 @@ import Completed from './Pages/Dashboard/Completed'
 import Inventory from './Pages/Dashboard/Inventory'
 import CreateProduct from './Pages/Dashboard/CreateProduct'
 import UpdateProduct from './Pages/Dashboard/UpdateProduct'
+import Product from './Pages/Product'
 
 import ScrollToTop from './helper/ScrollToTop'
 import { ToastContainer } from 'react-toastify'
@@ -41,7 +42,8 @@ function App() {
           <ScrollToTop />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/menu' component={Menu} />
+            <Route exact path='/menu/:page?' component={Menu} />
+            <Route exact path='/product/:id' component={Product} />
             <Route exact path='/faq' component={Info} />
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/contact' component={Contact} />
