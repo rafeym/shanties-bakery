@@ -1,0 +1,22 @@
+@import '../../styles/variables.scss';
+
+#menu-products {
+  display: flex;
+  flex-direction: column;
+  max-width: 1300px;
+  margin: 50px auto;
+}
+
+.product-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0px;
+  flex-wrap: wrap;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
