@@ -1,40 +1,40 @@
 @import '../../styles/variables.scss';
 
 .pagination {
-    display: flex;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 
-    & li:first-child {
-        border-left: 1px solid $royal-blue !important;
-        border-top-left-radius: 0.6rem;
-        border-bottom-left-radius: 0.6rem;
+  & li:first-child {
+    border-left: 1px solid $black !important;
+    border-top-left-radius: 0.6rem;
+    border-bottom-left-radius: 0.6rem;
+  }
+
+  & li:last-child {
+    border-top-right-radius: 0.6rem;
+    border-bottom-right-radius: 0.6rem;
+  }
+
+  & li {
+    list-style: none;
+    display: block;
+    padding: 0.5rem;
+    border: 1px solid $black;
+    border-left: none;
+    cursor: pointer;
+
+    & a {
+      padding: 1rem;
+      color: $black;
+      font-size: 1.4rem;
     }
-
-    & li:last-child {
-        border-top-right-radius: 0.6rem;
-        border-bottom-right-radius: 0.6rem;
-    }
-
-    & li {
-        list-style: none;
-        display: block;
-        padding: 0.5rem;
-        border: 1px solid $royal-blue;
-        border-left: none;
-        cursor: pointer;
-
-        & a {
-            padding: 1rem;
-            color: $royal-blue;
-            font-size: 1.4rem;
-        }
-    }
+  }
 }
 
 .active-page {
-    background: $royal-blue;
-    & a {
-        color: $white !important;
-    }
+  background: $black;
+  & a {
+    color: $white !important;
+  }
 }
