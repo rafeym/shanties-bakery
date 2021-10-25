@@ -9,7 +9,7 @@ const { v4: uuidv4 } = require('uuid')
 // @access  Public
 module.exports.getProducts = async (req, res) => {
   const { page } = req.params
-  const pageLimit = 10
+  const pageLimit = 8
   const skip = (page - 1) * pageLimit
   try {
     const count = await Product.find({}).countDocuments()
