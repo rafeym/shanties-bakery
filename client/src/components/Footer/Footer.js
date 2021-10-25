@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FaEnvelope, FaFacebook, FaInstagram, FaPhoneAlt } from 'react-icons/fa'
+import { FaFacebook, FaInstagram } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 import './Footer.scss'
@@ -14,13 +14,19 @@ const Footer = () => {
             <h4>Useful Links</h4>
             <ul>
               <li>
-                <Link to='/'>Home</Link>
+                <Link className='f-link' to='/'>
+                  Home
+                </Link>
               </li>
               <li>
-                <Link to='/menu'>Menu</Link>
+                <Link className='f-link' to='/menu'>
+                  Menu
+                </Link>
               </li>
               <li>
-                <Link to='/contact'>Contact</Link>
+                <Link className='f-link' to='/contact'>
+                  Contact
+                </Link>
               </li>
             </ul>
           </div>
@@ -29,13 +35,19 @@ const Footer = () => {
             <h4>FAQ</h4>
             <ul>
               <li>
-                <Link to='/faq'>Shipping</Link>
+                <Link className='f-link' to='/faq'>
+                  Shipping
+                </Link>
               </li>
               <li>
-                <Link to='/faq'>Payment</Link>
+                <Link className='f-link' to='/faq'>
+                  Payment
+                </Link>
               </li>
               <li>
-                <Link to='/faq'>Returns</Link>
+                <Link className='f-link' to='/faq'>
+                  Returns
+                </Link>
               </li>
             </ul>
           </div>
@@ -44,11 +56,10 @@ const Footer = () => {
             <h4>Contact</h4>
             <ul>
               <li>
-                <FaPhoneAlt /> <span>(416) 274-6016</span>
+                <span>(416) 274-6016</span>
               </li>
               <li>
-                <FaEnvelope />{' '}
-                <span className='bus-email'>shantiesbakery@gmail.com</span>
+                <span>shantiesbakery@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -74,7 +85,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className='copyright'>&copy;Shantie's Bakery 2021</div>
     </footer>
   )
 }
