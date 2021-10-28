@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 
+import { useDispatch } from 'react-redux'
+import { addProductToCartAction } from '../../store/actions/cartActions'
+
+import { toast } from 'react-toastify'
 import './Product.scss'
 
-const Product = ({ product }) => {
-  const { cloudinary_secure_url, description, name, price, allergens } = product
+const Product = ({ product, history }) => {
+  const { cloudinary_secure_url, description, name, price, allergens, _id } =
+    product
   const [qty, setQty] = useState(1)
   const qtyPlus = () => {
     if (qty === 10) {
@@ -19,6 +24,19 @@ const Product = ({ product }) => {
     } else {
       setQty(qty - 1)
     }
+  }
+  const dispatch = useDispatch()
+
+  const addToCartHandler = (e) => {
+    dispatch(addProductToCartAction(_id, qty))
+    toast('Item added to cart!', {
+      position: 'bottom-center',
+      autoClose: 1200,
+      hideProgressBar: true,
+      closeOnClick: true,
+      draggable: true,
+      pauseOnHover: true,
+    })
   }
 
   return (
@@ -41,7 +59,9 @@ const Product = ({ product }) => {
               </div>
             </div>
           </div>
-          <div className='btn'>Add to Cart</div>
+          <div className='btn' onClick={addToCartHandler}>
+            Add to Cart
+          </div>
           <div className='prod-details'>
             <p>
               DESC <span className='detail-text'>{description}</span>
