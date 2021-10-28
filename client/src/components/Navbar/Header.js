@@ -4,11 +4,18 @@ import { Link } from 'react-router-dom'
 import { FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa'
 
 import './Header.scss'
+import { useSelector } from 'react-redux'
 
 const Header = () => {
   const [click, setClick] = useState(false)
   const handleClick = () => {
     setClick(!click)
+  }
+
+  const { cart } = useSelector((state) => state.cartReducer)
+
+  const getCartCount = () => {
+    return cart.reduce((qty, item) => Number(item.qty) + qty, 0)
   }
 
   return (
@@ -45,7 +52,7 @@ const Header = () => {
       {/* Right Nav */}
       <div className='right-nav'>
         <Link to='/cart' className='icon-container'>
-          <FaShoppingCart className='icon' /> <span>0</span>
+          <FaShoppingCart className='icon' /> <span>{getCartCount()}</span>
         </Link>
       </div>
     </nav>
