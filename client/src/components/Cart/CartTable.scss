@@ -36,9 +36,13 @@
         padding: 5px;
       }
 
-      & a {
+      & .remove-cta {
         color: $pink;
         font-size: 12px;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       & img {
@@ -87,6 +91,22 @@
     &:hover {
       cursor: pointer;
     }
+  }
+}
+
+.empty-cart-title {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  & .empty-cart-btn {
+    background: $black;
+    color: $white;
+    padding: 15px 20px;
+    margin-top: 10px;
+    border-radius: 10px;
   }
 }
 
