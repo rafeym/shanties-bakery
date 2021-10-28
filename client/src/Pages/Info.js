@@ -9,10 +9,10 @@ const Info = () => {
       <Header />
       <div
         style={{
+          minHeight: 'calc(100vh - 211px - 58px)',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '100vh',
         }}
       >
         <h3>FAQ Page</h3>
