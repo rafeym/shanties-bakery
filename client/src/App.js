@@ -20,58 +20,73 @@ import Inventory from './Pages/Dashboard/Inventory'
 import CreateProduct from './Pages/Dashboard/CreateProduct'
 import UpdateProduct from './Pages/Dashboard/UpdateProduct'
 import Product from './Pages/Product'
+import Checkout from './Pages/Checkout'
 
 import ScrollToTop from './helper/ScrollToTop'
 import { ToastContainer } from 'react-toastify'
 
 import PrivateRoute from './private/PrivateRoute'
 import RouteLinks from './private/RouteLinks'
+import CartPrivateRoute from './private/CartPrivateRoute'
 
 import setAuthToken from './helper/setAuthToken'
 
 if (localStorage.token) {
-  setAuthToken(localStorage.token)
+    setAuthToken(localStorage.token)
 }
 
 function App() {
-  return (
-    <>
-      <Provider store={store}>
-        <Router>
-          <ToastContainer />
-          <ScrollToTop />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/menu/:page?' component={Menu} />
-            <Route exact path='/product/:id' component={Product} />
-            <Route exact path='/faq' component={Info} />
-            <Route exact path='/cart' component={Cart} />
-            <Route exact path='/contact' component={Contact} />
-            <RouteLinks path='/login' exact component={Login} />
-            <PrivateRoute path='/dashboard' exact component={Admin} />
-            <PrivateRoute path='/orders' exact component={Orders} />
-            <PrivateRoute path='/completed' exact component={Completed} />
-            <PrivateRoute
-              path='/inventory/:page?'
-              exact
-              component={Inventory}
-            />
-            <PrivateRoute
-              path='/create-product'
-              exact
-              component={CreateProduct}
-            />
-            <PrivateRoute
-              path='/update-product/:id'
-              exact
-              component={UpdateProduct}
-            />
-            <Route component={NotFound} />
-          </Switch>
-        </Router>
-      </Provider>
-    </>
-  )
+    return (
+        <>
+            <Provider store={store}>
+                <Router>
+                    <ToastContainer />
+                    <ScrollToTop />
+                    <Switch>
+                        <Route exact path='/' component={Home} />
+                        <Route exact path='/menu/:page?' component={Menu} />
+                        <Route exact path='/product/:id' component={Product} />
+                        <Route exact path='/faq' component={Info} />
+                        <Route exact path='/cart' component={Cart} />
+                        <Route exact path='/contact' component={Contact} />
+                        <RouteLinks path='/login' exact component={Login} />
+                        <CartPrivateRoute
+                            path='/checkout'
+                            exact
+                            component={Checkout}
+                        />
+                        <PrivateRoute
+                            path='/dashboard'
+                            exact
+                            component={Admin}
+                        />
+                        <PrivateRoute path='/orders' exact component={Orders} />
+                        <PrivateRoute
+                            path='/completed'
+                            exact
+                            component={Completed}
+                        />
+                        <PrivateRoute
+                            path='/inventory/:page?'
+                            exact
+                            component={Inventory}
+                        />
+                        <PrivateRoute
+                            path='/create-product'
+                            exact
+                            component={CreateProduct}
+                        />
+                        <PrivateRoute
+                            path='/update-product/:id'
+                            exact
+                            component={UpdateProduct}
+                        />
+                        <Route component={NotFound} />
+                    </Switch>
+                </Router>
+            </Provider>
+        </>
+    )
 }
 
 export default App
