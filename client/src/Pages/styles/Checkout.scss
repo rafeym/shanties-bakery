@@ -1,0 +1,200 @@
+@import '../../styles/variables.scss';
+
+.checkout-page-wrapper {
+    min-height: calc(100vh - 211px - 58px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.checkout-container {
+    max-width: 900px;
+    width: 100%;
+    background: $white;
+    padding: 25px 30px;
+
+    & .checkout-title {
+        font-size: 25px;
+        font-weight: 500;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 30px;
+            background: $black;
+        }
+    }
+
+    & .checkout-form .user-details {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 20px 0 12px 0;
+
+        & .input-box {
+            margin-bottom: 10px;
+            width: calc(100% / 2 - 20px);
+
+            &:last-child {
+                width: calc(100%);
+            }
+
+            & .details {
+                display: block;
+                font-weight: 500;
+                margin-bottom: 10px;
+            }
+
+            & input {
+                height: 45px;
+                width: 100%;
+                outline: none;
+                border: 1px solid $grey;
+                border-radius: 5px;
+                padding-left: 15px;
+                font-size: 16px;
+                border-bottom-width: 3px;
+                transition: all 0.3s ease;
+
+                &:focus {
+                    border-color: $black;
+                }
+            }
+        }
+    }
+
+    .type-container {
+        border: 2px solid $grey;
+        margin: 20px 0 12px 0;
+        padding: 20px;
+        padding-left: 30px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        & .type-icon {
+            font-size: 20px;
+            color: $dark-grey;
+        }
+        & span {
+            margin-left: 10px;
+            font-size: 15px;
+            letter-spacing: 1px;
+            color: $dark-grey;
+        }
+    }
+
+    .payment-container {
+        border: 2px solid $grey;
+        margin: 20px 0 12px 0;
+        padding: 20px;
+        padding-left: 30px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+
+        & p {
+            font-size: 15px;
+            color: $dark-grey;
+        }
+
+        & .payment-icon-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 10px;
+
+            & .payment-icon {
+                font-size: 20px;
+                color: $dark-grey;
+            }
+
+            & span {
+                margin-left: 10px;
+                color: $dark-grey;
+            }
+        }
+    }
+}
+
+.summary-container {
+    margin: 20px 0 12px 0;
+    padding: 15px;
+    padding-left: 30px;
+
+    & .cart-item-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        & input {
+            width: 40px;
+            height: 30px;
+            padding: 5px;
+        }
+
+        & .cart-item-icon:hover {
+            cursor: pointer;
+        }
+
+        & .checkout-cart-item-name {
+            color: $black;
+        }
+    }
+
+    & .cart-border {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 1px solid $grey;
+    }
+
+    & .checkout-total-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & p {
+            font-weight: 600;
+        }
+
+        & span {
+            font-weight: 600;
+        }
+    }
+}
+
+.c-btn-container {
+    background: $black;
+    color: $white;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    border-radius: 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 584px) {
+    .checkout-container {
+        max-width: 100%;
+
+        & .checkout-form .user-details {
+            & .input-box {
+                margin-bottom: 15px;
+                width: 100%;
+            }
+        }
+    }
+}
