@@ -78,16 +78,17 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        border-bottom-width: 5px;
 
         & .type-icon {
             font-size: 20px;
-            color: $dark-grey;
+            color: $black;
         }
         & span {
             margin-left: 10px;
             font-size: 15px;
             letter-spacing: 1px;
-            color: $dark-grey;
+            color: $black;
         }
     }
 
@@ -99,10 +100,11 @@
         border-radius: 5px;
         display: flex;
         flex-direction: column;
+        border-bottom-width: 5px;
 
         & p {
             font-size: 15px;
-            color: $dark-grey;
+            color: $black;
         }
 
         & .payment-icon-container {
@@ -113,12 +115,12 @@
 
             & .payment-icon {
                 font-size: 20px;
-                color: $dark-grey;
+                color: $black;
             }
 
             & span {
                 margin-left: 10px;
-                color: $dark-grey;
+                color: $black;
             }
         }
     }

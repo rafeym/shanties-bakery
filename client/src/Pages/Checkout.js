@@ -1,18 +1,19 @@
 import React from 'react'
 
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+
 import { useSelector, useDispatch } from 'react-redux'
+import {
+    addProductToCartAction,
+    removeProductFromCart,
+} from '../store/actions/cartActions'
 
 import Footer from '../components/Footer/Footer'
 import Header from '../components/Navbar/Header'
 
 import { FaTruck, FaMoneyBill, FaRegCreditCard, FaTimes } from 'react-icons/fa'
-
 import './styles/Checkout.scss'
-import {
-    addProductToCartAction,
-    removeProductFromCart,
-} from '../store/actions/cartActions'
-import { Link } from 'react-router-dom'
 
 const Checkout = () => {
     const { cart } = useSelector((state) => state.cartReducer)
@@ -32,6 +33,35 @@ const Checkout = () => {
 
     const qtyChangeHandler = (id, qty) => {
         dispatch(addProductToCartAction(id, qty))
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        console.log('Submitting')
+
+        const data = {
+            fname: 'Mohammad',
+            lname: 'Rafey',
+            email: 'mrafey10@gmail.com',
+            address: '72 Pilkey Crescent Toronto ON, M1B2A9',
+            phone: '6477052049',
+            cart,
+        }
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+
+        const res = await axios.post(
+            'http://localhost:5000/api/orders',
+            data,
+            config
+        )
+
+        console.log(res)
     }
 
     return (
@@ -119,6 +149,7 @@ const Checkout = () => {
                                                 )
                                             }
                                             min={1}
+                                            max={10}
                                         />
                                         <p>${item.price}</p>
                                     </div>
@@ -131,7 +162,7 @@ const Checkout = () => {
                             <span>${getCartTotal().toFixed(2)}</span>
                         </div>
                     </div>
-                    <div className='c-btn-container'>
+                    <div className='c-btn-container' onClick={handleSubmit}>
                         <div>Place Order</div>
                     </div>
                 </div>
