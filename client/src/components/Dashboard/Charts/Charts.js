@@ -4,42 +4,61 @@ import Chart from 'react-apexcharts'
 
 import './Charts.scss'
 
-const Charts = () => {
-  const state = {
+const Charts = ({ totalSubscribers, totalEarnings }) => {
+  const earningState = {
     options: {
       chart: {
         id: 'basic-bar',
       },
       xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+        categories: ['Earnings'],
       },
     },
     series: [
       {
-        name: 'series-1',
-        data: [30, 40, 45, 50, 49, 60, 70, 91],
+        name: 'value',
+        data: [totalEarnings],
       },
     ],
   }
+
+  const subState = {
+    options: {
+      chart: {
+        id: 'basic-bar',
+      },
+      xaxis: {
+        categories: ['Subscribers'],
+      },
+    },
+    series: [
+      {
+        name: 'value',
+        data: [totalSubscribers],
+      },
+    ],
+  }
+
   return (
     <div className='charts-grid'>
       <div className='charts'>
         <div className='chart-container'>
           <Chart
             className='chart-style'
-            options={state.options}
-            series={state.series}
+            options={subState.options}
+            series={subState.series}
             type='bar'
           />
         </div>
       </div>
+
       <div className='charts'>
         <div className='chart-container'>
           <Chart
             className='chart-style'
-            options={state.options}
-            series={state.series}
-            type='line'
+            options={earningState.options}
+            series={earningState.series}
+            type='bar'
           />
         </div>
       </div>
