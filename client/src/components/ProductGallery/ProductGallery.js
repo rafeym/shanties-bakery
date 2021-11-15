@@ -11,6 +11,7 @@ import img6 from '../../static/product/img6.JPG'
 import img7 from '../../static/product/img7.JPG'
 import img8 from '../../static/product/img8.jpg'
 import img9 from '../../static/product/img9.jpg'
+import ImageBox from './ImageBox'
 
 const ProductGallery = () => {
   return (
@@ -22,95 +23,15 @@ const ProductGallery = () => {
 
       <div className='body'>
         <div className='image-gallery'>
-          <div className='image-box'>
-            <img src={img1} alt='' />
-            <div className='overlay'>
-              <div className='details'>
-                <h3 className='title'>Title</h3>
-                <span className='category'>Category</span>
-              </div>
-            </div>
-          </div>
-
-          <div className='image-box'>
-            <img src={img2} alt='' />
-            <div className='overlay'>
-              <div className='details'>
-                <h3 className='title'>Title</h3>
-                <span className='category'>Category</span>
-              </div>
-            </div>
-          </div>
-
-          <div className='image-box'>
-            <img src={img3} alt='' />
-            <div className='overlay'>
-              <div className='details'>
-                <h3 className='title'>Title</h3>
-                <span className='category'>Category</span>
-              </div>
-            </div>
-          </div>
-
-          <div className='image-box'>
-            <img src={img4} alt='' />
-            <div className='overlay'>
-              <div className='details'>
-                <h3 className='title'>Title</h3>
-                <span className='category'>Category</span>
-              </div>
-            </div>
-          </div>
-
-          <div className='image-box'>
-            <img src={img5} alt='' />
-            <div className='overlay'>
-              <div className='details'>
-                <h3 className='title'>Title</h3>
-                <span className='category'>Category</span>
-              </div>
-            </div>
-          </div>
-
-          <div className='image-box'>
-            <img src={img6} alt='' />
-            <div className='overlay'>
-              <div className='details'>
-                <h3 className='title'>Title</h3>
-                <span className='category'>Category</span>
-              </div>
-            </div>
-          </div>
-
-          <div className='image-box'>
-            <img src={img7} alt='' />
-            <div className='overlay'>
-              <div className='details'>
-                <h3 className='title'>Title</h3>
-                <span className='category'>Category</span>
-              </div>
-            </div>
-          </div>
-
-          <div className='image-box'>
-            <img src={img8} alt='' />
-            <div className='overlay'>
-              <div className='details'>
-                <h3 className='title'>Title</h3>
-                <span className='category'>Category</span>
-              </div>
-            </div>
-          </div>
-
-          <div className='image-box'>
-            <img src={img9} alt='' />
-            <div className='overlay'>
-              <div className='details'>
-                <h3 className='title'>Title</h3>
-                <span className='category'>Category</span>
-              </div>
-            </div>
-          </div>
+          <ImageBox img={img1} />
+          <ImageBox img={img2} />
+          <ImageBox img={img3} />
+          <ImageBox img={img4} />
+          <ImageBox img={img5} />
+          <ImageBox img={img6} />
+          <ImageBox img={img7} />
+          <ImageBox img={img8} />
+          <ImageBox img={img9} />
         </div>
       </div>
     </>
