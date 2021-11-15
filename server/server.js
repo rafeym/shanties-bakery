@@ -6,7 +6,7 @@ const connectDB = require('./config/db')
 const app = express()
 
 require('dotenv').config({
-    path: './config/index.env',
+  path: './config/index.env',
 })
 
 connectDB()
@@ -19,18 +19,19 @@ app.use(cors())
 app.use('/api/users', require('./routes/users'))
 app.use('/api/products', require('./routes/products'))
 app.use('/api/orders', require('./routes/orders'))
+app.use('/api/newsletter', require('./routes/newsletter'))
 
 app.get('/', (req, res) => {
-    res.send('Test route for Shanties Bakery')
+  res.send('Test route for Shanties Bakery')
 })
 
 app.use((req, res) => {
-    res.status(404).json({
-        msg: 'Page not found',
-    })
+  res.status(404).json({
+    msg: 'Page not found',
+  })
 })
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+  console.log(`Server running on port ${PORT}`)
 })
