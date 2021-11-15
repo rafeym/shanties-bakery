@@ -13,7 +13,10 @@ module.exports.getProducts = async (req, res) => {
   const skip = (page - 1) * pageLimit
   try {
     const count = await Product.find({}).countDocuments()
-    const products = await Product.find({}).skip(skip).limit(pageLimit)
+    const products = await Product.find({})
+      .sort({ _id: -1 })
+      .skip(skip)
+      .limit(pageLimit)
 
     return res.status(200).json({ products, count, pageLimit })
   } catch (error) {
