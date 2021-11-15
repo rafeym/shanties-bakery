@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.72",
     "@sendgrid/mail": "^7.5.0",
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.27.1",
