@@ -29,7 +29,7 @@ const Product = ({ product, history }) => {
 
   const addToCartHandler = (e) => {
     dispatch(addProductToCartAction(_id, qty))
-    toast('Item added to cart!', {
+    toast.success('Item added to cart!', {
       position: 'bottom-center',
       autoClose: 1200,
       hideProgressBar: true,
