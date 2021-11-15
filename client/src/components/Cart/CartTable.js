@@ -47,6 +47,7 @@ const CartTable = ({ cart, qtyChangeHandler, removeProduct, getCartTotal }) => {
                     <input
                       type='number'
                       min={1}
+                      max={10}
                       value={item.qty}
                       onChange={(e) =>
                         qtyChangeHandler(item.product, e.target.value)
