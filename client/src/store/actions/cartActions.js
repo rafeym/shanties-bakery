@@ -30,7 +30,7 @@ export const removeProductFromCart = (id) => (dispatch, getState) => {
     payload: id,
   })
   localStorage.setItem('cart', JSON.stringify(getState().cartReducer.cart))
-  toast('Item removed', {
+  toast.success('Item removed', {
     position: 'bottom-center',
     autoClose: 1200,
     hideProgressBar: true,
