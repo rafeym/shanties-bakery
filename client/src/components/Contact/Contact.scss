@@ -1,0 +1,46 @@
+.contact-container {
+  min-height: calc(100vh - 211px - 58px);
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & h1 {
+    font-size: 3rem;
+    margin: 2rem 0rem;
+  }
+
+  & .contact-option {
+    width: 700px;
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid black;
+    cursor: pointer;
+
+    & .contact-option-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & h3 {
+        font-size: 1.8rem;
+      }
+    }
+    & .contact-option-info {
+      max-height: 0;
+      overflow: hidden;
+      transition: 1s ease;
+
+      & p {
+        padding-top: 1rem;
+        line-height: 1.6;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.contact-option.active .contact-option-info {
+  max-height: 400px;
+}

@@ -2,21 +2,13 @@ import React from 'react'
 
 import Header from '../components/Navbar/Header'
 import Footer from '../components/Footer/Footer'
+import ContactComponent from '../components/Contact/Contact'
 
 const Contact = () => {
   return (
     <>
       <Header />
-      <div
-        style={{
-          minHeight: 'calc(100vh - 211px - 58px)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <h3>Contact Page</h3>
-      </div>
+      <ContactComponent />
       <Footer />
     </>
   )
