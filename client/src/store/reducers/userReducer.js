@@ -5,12 +5,19 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   SET_LOADING,
+  SUBSCRIBE_REQUEST,
+  SUBSCRIBE_FAIL,
+  SUBSCRIBE_SUCCESS,
+  GET_SUBSCRIBER_LIST_SUCCESS,
+  GET_SUBSCRIBER_LIST_FAIL,
+  GET_SUBSCRIBER_LIST_REQUEST,
 } from '../types/index'
 
 const initState = {
   token: '',
   loading: false,
   user: null,
+  subscribers: [],
 }
 
 const verifyToken = (token) => {
@@ -39,6 +46,16 @@ if (token) {
 export const userReducer = (state = initState, action) => {
   const { type, payload } = action
   switch (type) {
+    case GET_SUBSCRIBER_LIST_SUCCESS:
+      return {
+        ...state,
+        subscribers: payload.subscribers,
+      }
+    case SUBSCRIBE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      }
     case LOGIN_SUCCESS:
       const decoded = verifyToken(payload)
       const { user } = decoded
@@ -48,11 +65,15 @@ export const userReducer = (state = initState, action) => {
         loading: false,
         user: user,
       }
+    case GET_SUBSCRIBER_LIST_FAIL:
+    case SUBSCRIBE_FAIL:
     case LOGIN_FAIL:
       return {
         ...state,
         loading: false,
       }
+    case GET_SUBSCRIBER_LIST_REQUEST:
+    case SUBSCRIBE_REQUEST:
     case SET_LOADING:
     case LOGIN_REQUEST:
       return {
@@ -65,6 +86,7 @@ export const userReducer = (state = initState, action) => {
         ...state,
         token: '',
         user: '',
+        loading: false,
       }
     default:
       return state
