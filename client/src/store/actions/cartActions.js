@@ -16,6 +16,7 @@ export const addProductToCartAction =
           name: data.product.name,
           image: data.product.cloudinary_secure_url,
           price: data.product.price,
+          sku: data.product.sku,
           qty,
         },
       })

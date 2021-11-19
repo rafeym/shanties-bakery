@@ -52,8 +52,12 @@ export const createOrder = (orderData) => async (dispatch) => {
     })
   } catch (error) {
     const errors = error?.response?.data?.errors
+    const outOfStock = error?.response?.data?.outOfStock
     if (errors) {
       errors.forEach((error) => toast.error(error.msg))
+    }
+    if (outOfStock) {
+      outOfStock.forEach((error) => toast.error(error.msg))
     }
     dispatch({
       type: ORDER_FAIL,

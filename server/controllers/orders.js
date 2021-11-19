@@ -1,4 +1,5 @@
 const Order = require('../models/Order')
+const Product = require('../models/Product')
 const mongoose = require('mongoose')
 const { check, validationResult } = require('express-validator')
 const { v4: uuidv4 } = require('uuid')
@@ -23,6 +24,31 @@ module.exports.createOrder = async (req, res) => {
     return res.status(400).json({
       errors: errors.array(),
     })
+  }
+
+  try {
+    //get all products
+    const products = await Product.find({})
+
+    //get products ids
+    const productIds = products.map((prod) => prod.sku)
+
+    const outOfStock = []
+
+    cart.forEach((item) => {
+      const prodExist = productIds.find((sku) => sku === item.sku)
+
+      if (!prodExist) {
+        //update removeProds with items ids
+        outOfStock.push({ msg: `Item ${item.name} is no longer available.` })
+      }
+    })
+
+    if (outOfStock.length !== 0) {
+      return res.status(404).json({ outOfStock })
+    }
+  } catch (error) {
+    return res.status(500).json({ errors: error, msg: error.message })
   }
 
   try {
