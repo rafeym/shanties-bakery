@@ -6,9 +6,16 @@ import { addProductToCartAction } from '../../store/actions/cartActions'
 import { toast } from 'react-toastify'
 import './Product.scss'
 
-const Product = ({ product, history }) => {
-  const { cloudinary_secure_url, description, name, price, allergens, _id } =
-    product
+const Product = ({ product }) => {
+  const {
+    cloudinary_secure_url,
+    description,
+    name,
+    price,
+    allergens = [],
+    serving,
+    _id,
+  } = product
   const [qty, setQty] = useState(1)
   const qtyPlus = () => {
     if (qty === 10) {
@@ -57,7 +64,7 @@ const Product = ({ product, history }) => {
           <h3>Allergens</h3>
           <p>{allergens}</p>
           <h3>Serving</h3>
-          <p>Dozen</p>
+          <p>{serving}</p>
           <div className='quantity-section'>
             <div className='qty-container'>
               <div className='count'>

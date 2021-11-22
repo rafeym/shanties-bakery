@@ -13,6 +13,7 @@ const Form = () => {
     allergens: [],
     description: '',
     image: '',
+    serving: '',
   }
   const [formData, setFormData] = useState(initState)
   const [currentImage, setCurrentImage] = useState('Choose Image')
@@ -47,12 +48,13 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const { name, price, allergens, description, image } = formData
+    const { name, price, allergens, description, serving, image } = formData
 
     const productForm = new FormData()
     productForm.append('name', name)
     productForm.append('price', price)
     productForm.append('allergens', allergens)
+    productForm.append('serving', serving)
     productForm.append('description', description)
     productForm.append('image', image)
 
@@ -111,6 +113,16 @@ const Form = () => {
                   placeholder='Product Allergens'
                   name='allergens'
                   value={formData.allergens}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className='form-column'>
+                <label>Serving</label>
+                <input
+                  type='text'
+                  placeholder='Product Serving'
+                  name='serving'
+                  value={formData.serving}
                   onChange={handleChange}
                 />
               </div>

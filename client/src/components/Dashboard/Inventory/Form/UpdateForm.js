@@ -18,6 +18,7 @@ const UpdateForm = () => {
     name: '',
     price: 0,
     allergens: [],
+    serving: '',
     description: '',
   }
   const [formData, setFormData] = useState(initState)
@@ -38,9 +39,16 @@ const UpdateForm = () => {
       name: product.name,
       price: product.price,
       allergens: product.allergens,
+      serving: product.serving,
       description: product.description,
     })
-  }, [product.name, product.price, product.description, product.allergens])
+  }, [
+    product.name,
+    product.price,
+    product.description,
+    product.allergens,
+    product.serving,
+  ])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -53,12 +61,13 @@ const UpdateForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const { name, price, allergens, description } = formData
+    const { name, price, allergens, description, serving } = formData
 
     const productForm = new FormData()
     productForm.append('name', name)
     productForm.append('price', price)
     productForm.append('allergens', allergens)
+    productForm.append('serving', serving)
     productForm.append('description', description)
 
     dispatch(updateProductAction(id, productForm))
@@ -111,15 +120,16 @@ const UpdateForm = () => {
                   onChange={handleChange}
                 />
               </div>
-              {/* <div className='form-column'>
-                <label>{currentImage}*</label>
+              <div className='form-column'>
+                <label>Serving</label>
                 <input
-                  type='file'
-                  name='image'
-                  id='image'
-                  onChange={fileHandle}
+                  type='text'
+                  placeholder='Product Serving'
+                  name='serving'
+                  value={formData.serving}
+                  onChange={handleChange}
                 />
-              </div> */}
+              </div>
             </div>
             <div className='form-row'>
               <div className='form-column'>
