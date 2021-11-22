@@ -18,6 +18,10 @@ const ProductSchema = new Schema(
     },
     allergens: {
       type: [String],
+      default: undefined,
+    },
+    serving: {
+      type: String,
     },
     description: {
       type: String,

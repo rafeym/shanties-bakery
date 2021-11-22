@@ -30,7 +30,7 @@ module.exports.getProducts = async (req, res) => {
 module.exports.createProduct = async (req, res) => {
   const form = formidable({ multiples: true })
   form.parse(req, async (error, fields, files) => {
-    const { name, price, description, allergens } = fields
+    const { name, price, description, allergens, serving } = fields
     const errors = []
     if (
       name === '' ||
@@ -61,6 +61,7 @@ module.exports.createProduct = async (req, res) => {
           price,
           description,
           allergens,
+          serving,
           sku: uuidv4(),
           image: public_id,
           cloudinary_secure_url: secure_url,
@@ -100,7 +101,7 @@ module.exports.updateProductById = async (req, res) => {
 
   const form = formidable({ multiples: true })
   form.parse(req, async (error, fields, files) => {
-    const { name, price, description, allergens } = fields
+    const { name, price, description, allergens, serving } = fields
     const errors = []
     if (name === '' || price === '' || description === '') {
       errors.push({ msg: 'One or more required field is missing' })
@@ -117,6 +118,7 @@ module.exports.updateProductById = async (req, res) => {
           price,
           description,
           allergens,
+          serving,
         }
 
         product = await Product.findByIdAndUpdate(id, updatedProduct, {
