@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router'
+import { Redirect, useParams } from 'react-router'
 
 import Header from '../components/Navbar/Header'
 import Footer from '../components/Footer/Footer'
@@ -31,6 +31,8 @@ const Menu = () => {
     page = 1
   }
 
+  console.log(products.length)
+
   useEffect(() => {
     dispatch(fetchProductsAction(page))
   }, [dispatch, page])
@@ -41,7 +43,9 @@ const Menu = () => {
       <section id='menu-products'>
         <div className='product-container'>
           {loading ? (
-            <Spinner loading={loading} />
+            <Spinner />
+          ) : products.length === 0 ? (
+            <Redirect to='/menu/1' />
           ) : (
             products.map((prod) => (
               <ProductCard
