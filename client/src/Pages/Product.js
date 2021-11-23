@@ -13,6 +13,7 @@ import Footer from '../components/Footer/Footer'
 import ProductInfo from '../components/Product/Product'
 import { fetchProductAction } from '../store/actions/productActions'
 import Spinner from '../components/Spinner/Spinner'
+import NotFound from '../components/NotFound/NotFound'
 
 const Product = () => {
   const { id } = useParams()
@@ -30,6 +31,8 @@ const Product = () => {
       <Header />
       {loading ? (
         <Spinner loading={loading} />
+      ) : product === null ? (
+        <NotFound />
       ) : (
         <ProductInfo product={product} />
       )}

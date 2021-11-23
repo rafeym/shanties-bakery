@@ -80,6 +80,12 @@ module.exports.createProduct = async (req, res) => {
 module.exports.findProductById = async (req, res) => {
   const { id } = req.params
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(404)
+      .json({ msg: `We can't find the product you're looking for.` })
+  }
+
   try {
     const product = await Product.findOne({ _id: id })
 

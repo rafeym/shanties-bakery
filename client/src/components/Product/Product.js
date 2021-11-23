@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
+import _ from 'lodash'
 
 import { useDispatch } from 'react-redux'
 import { addProductToCartAction } from '../../store/actions/cartActions'
 
 import { toast } from 'react-toastify'
 import './Product.scss'
+import NotFound from '../NotFound/NotFound'
 
 const Product = ({ product }) => {
+  const productEmpty = _.isEmpty(product)
+
   const {
     cloudinary_secure_url,
     description,
@@ -47,41 +51,47 @@ const Product = ({ product }) => {
   }
 
   return (
-    <div className='product-detail-container'>
-      <div className='prod-details'>
-        <div className='big-img'>
-          <img src={cloudinary_secure_url} alt={name} />
-        </div>
+    <>
+      {productEmpty ? (
+        <NotFound />
+      ) : (
+        <div className='product-detail-container'>
+          <div className='prod-details'>
+            <div className='big-img'>
+              <img src={cloudinary_secure_url} alt={name} />
+            </div>
 
-        <div className='prod-details-box'>
-          <div className='details-row'>
-            <h2>{name}</h2>
-            <span>${price}</span>
-          </div>
+            <div className='prod-details-box'>
+              <div className='details-row'>
+                <h2>{name}</h2>
+                <span>${price}</span>
+              </div>
 
-          <h3>Description</h3>
-          <p>{description}</p>
-          <h3>Allergens</h3>
-          <p>{allergens}</p>
-          <h3>Serving</h3>
-          <p>{serving}</p>
-          <div className='quantity-section'>
-            <div className='qty-container'>
-              <div className='count'>
-                <div className='count-content'>
-                  <span onClick={qtyMinus}>-</span>
-                  <span>{qty}</span>
-                  <span onClick={qtyPlus}>+</span>
+              <h3>Description</h3>
+              <p>{description}</p>
+              <h3>Allergens</h3>
+              <p>{allergens}</p>
+              <h3>Serving</h3>
+              <p>{serving}</p>
+              <div className='quantity-section'>
+                <div className='qty-container'>
+                  <div className='count'>
+                    <div className='count-content'>
+                      <span onClick={qtyMinus}>-</span>
+                      <span>{qty}</span>
+                      <span onClick={qtyPlus}>+</span>
+                    </div>
+                  </div>
+                </div>
+                <div className='btn' onClick={addToCartHandler}>
+                  Add to Cart
                 </div>
               </div>
             </div>
-            <div className='btn' onClick={addToCartHandler}>
-              Add to Cart
-            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   )
 }
 
