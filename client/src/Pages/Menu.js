@@ -53,6 +53,7 @@ const Menu = () => {
                 name={prod.name}
                 price={prod.price}
                 img={prod.cloudinary_secure_url}
+                serving={prod.serving}
                 id={prod._id}
               />
             ))

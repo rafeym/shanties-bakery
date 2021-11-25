@@ -9,7 +9,7 @@ import './ProductCard.scss'
 import { useDispatch } from 'react-redux'
 import { addProductToCartAction } from '../../store/actions/cartActions'
 
-const ProductCard = ({ name, price, img, id }) => {
+const ProductCard = ({ name, price, img, id, serving }) => {
   const dispatch = useDispatch()
 
   const handleAddToCart = () => {
@@ -34,7 +34,7 @@ const ProductCard = ({ name, price, img, id }) => {
           {name}
         </Link>
       </strong>
-      <span className='p-quantity'>Dozen</span>
+      <span className='p-quantity'>{serving}</span>
       <span className='p-price'>${price}</span>
       <div className='cart-btn' onClick={handleAddToCart}>
         <FaShoppingBag className='cart-btn-icon' />
