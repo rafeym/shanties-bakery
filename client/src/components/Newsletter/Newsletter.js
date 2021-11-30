@@ -8,8 +8,6 @@ import './Newsletter.scss'
 
 const Newsletter = () => {
   const INIT_STATE = {
-    firstname: '',
-    lastname: '',
     email: '',
   }
   const [subData, setSubData] = useState(INIT_STATE)
@@ -31,47 +29,34 @@ const Newsletter = () => {
     setSubData(INIT_STATE)
   }
   return (
-    <div className='n-body'>
-      {loading ? (
-        <ClipLoader color={'#000'} size={100} loading={loading} />
-      ) : (
-        <div className='newsletter-container'>
-          <div className='newsletter'>
-            <h1>Subscribe to our newsletter</h1>
+    <>
+      <section className='newsletter'>
+        <div className='newsletter-content'>
+          <div className='newsletter-text'>
+            <h2>SUBSCRIBE TO OUR NEWSLETTER!</h2>
             <p>To stay up to date on new treat boxes & pastries.</p>
-            <form className='newsletter-form'>
-              <input
-                type='text'
-                placeholder='First Name'
-                name='firstname'
-                value={subData.firstname}
-                onChange={handleChange}
-              />
-              <input
-                type='text'
-                placeholder='Last Name'
-                name='lastname'
-                value={subData.lastname}
-                onChange={handleChange}
-              />
-              <input
-                type='email'
-                placeholder='Email Address'
-                name='email'
-                value={subData.email}
-                onChange={handleChange}
-              />
-            </form>
-            <input
-              type='submit'
-              className='n-btn'
-              value='Subscribe'
-              onClick={handleSubmit}
-            />
           </div>
+          <form className='newsletter-form'>
+            {loading ? (
+              <ClipLoader color={'#000'} size={50} loading={loading} />
+            ) : (
+              <>
+                {' '}
+                <input
+                  type='email'
+                  name='email'
+                  value={subData.email}
+                  onChange={handleChange}
+                />
+                <div className='newsletter-btn' onClick={handleSubmit}>
+                  Subscribe
+                </div>{' '}
+              </>
+            )}
+          </form>
         </div>
-      )}
-    </div>
+      </section>
+    </>
   )
 }
 

@@ -1,97 +1,65 @@
 @import '../../styles/variables.scss';
 
-.n-body {
-  min-height: 20vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: $light-pink;
-  max-width: 1250px;
-  margin: 0 auto;
-  border-radius: 30px;
-  padding: 30px;
-  margin-top: 80px;
-  margin-bottom: 80px;
-}
-
 .newsletter {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  background: #fafafa;
+  padding: 50px;
+}
+
+.newsletter-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-}
-
-.newsletter h1 {
-  font-size: 2.5rem;
-  font-weight: 400;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-.newsletter p {
-  color: rgba(87, 105, 117, 0.6);
-  margin: 5px;
-  font-size: 0.9rem;
-  text-align: center;
-  margin-bottom: 1.25rem;
-}
-
-.newsletter-form {
-  display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
+  // border: 2px solid black;
 
-.newsletter-form input[type='text'],
-.newsletter-form input[type='email'] {
-  border-radius: 8px;
-  border: none;
-  color: $pink;
-  padding: 1em 3em;
-  margin-bottom: 1.25rem;
-  margin-right: 1.2rem;
-  font-size: 0.875rem;
-}
+  & .newsletter-text {
+    margin-right: 100px;
+    text-align: center;
+  }
+  & form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.n-btn {
-  color: $black;
-  background: $pink;
-  border: 2px solid $pink;
-  font-weight: 500;
-  padding: 15px 60px;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+    & input {
+      margin-right: 10px;
+      padding: 5px 30px;
+      border: 2px solid $black;
+      border-radius: 3px;
+    }
 
-.n-btn:hover {
-  background: transparent;
-  cursor: pointer;
-}
-
-@media (max-width: 1280px) {
-  .n-body {
-    width: 1150px;
+    & .newsletter-btn {
+      background: $black;
+      color: $white;
+      padding: 6px 30px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
   }
 }
 
-@media (max-width: 1200px) {
-  .n-body {
-    width: 90%;
+@media screen and (max-width: 869px) {
+  .newsletter-text {
+    margin-right: 10px !important;
   }
 }
 
-@media (max-width: 280px) {
-  .newsletter-form input[type='text'],
-  .newsletter-form input[type='email'] {
-    border-radius: 8px;
-    border: none;
-    color: $pink;
-    padding: 1em;
-    margin-bottom: 1.25rem;
-    margin-right: 1.2rem;
-    font-size: 0.875rem;
+@media screen and (max-width: 400px) {
+  .newsletter-form {
+    flex-wrap: wrap;
+    width: 300px;
+    padding: 10px;
+
+    & input {
+      width: 100%;
+      margin-right: 0px !important;
+      margin-bottom: 10px;
+    }
+    & .newsletter-btn {
+      width: 100%;
+      text-align: center;
+    }
   }
 }
