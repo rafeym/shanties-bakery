@@ -35,7 +35,7 @@ const Login = () => {
       ) : (
         <div className='split-screen'>
           <div className='right'>
-            <form className='login-form' onSubmit={onSubmit}>
+            <form className='login-form'>
               <div className='copy'>
                 <h2>Login</h2>
               </div>
@@ -58,11 +58,9 @@ const Login = () => {
                   onChange={handleChange}
                 />
               </div>
-              <input
-                className='login-btn'
-                type='submit'
-                value={loading ? 'Loading...' : 'Login'}
-              />
+              <div className='login-btn' onClick={onSubmit}>
+                Login
+              </div>
             </form>
           </div>
         </div>
