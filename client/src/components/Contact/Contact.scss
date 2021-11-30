@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
 
-  & h1 {
+  & h2 {
     font-size: 3rem;
     margin: 2rem 0rem;
   }
@@ -43,4 +43,20 @@
 
 .contact-option.active .contact-option-info {
   max-height: 400px;
+}
+
+@media screen and (max-width: 700px) {
+  .contact-option {
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .contact-option {
+    max-width: 200px;
+  }
+
+  .contact-container .contact-option .contact-option-info p {
+    font-size: 0.8rem;
+  }
 }
