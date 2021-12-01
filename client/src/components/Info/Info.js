@@ -19,12 +19,12 @@ const Info = () => {
         </div>
         <div className='answer'>
           <p>
-            We offer delivery to our customers located in the GTA. Any inquries
+            We offer delivery to our customers located in the GTA. Any inquiries
             on deliveries outside of the GTA can be made by contacting us via
             email at shantiesbakery@gmail.com. Deliveries are on Saturday's and
             Sunday's unless contacted for special delivery dates. In order to
-            recieve your order the same weekend, all orders must be placed
-            before Thursday. Orders placed after will be delviered the following
+            receive your order the same weekend, all orders must be placed
+            before Thursday. Orders placed after will be delivered the following
             weekend.
           </p>
         </div>
@@ -38,9 +38,9 @@ const Info = () => {
         <div className='answer'>
           <p>
             We currently accept cash and e-transfer payments. Cash must be paid
-            upon delivery of order. E-transfer payments is to be paid upon order
-            confirmation. Any other payment inquiries can be made via email to
-            shantiesbakery@gmail.com.
+            upon delivery of the order. E-transfer payments are to be paid upon
+            order confirmation. Any other payment inquiries can be made via
+            email to shantiesbakery@gmail.com.
           </p>
         </div>
       </div>
@@ -54,9 +54,9 @@ const Info = () => {
           <p>
             We do not accept returns. If there is an issue with your order,
             please contact us via email at shantiesbakery@gmail.com for a refund
-            or new order. When contacting please include your name, order number
-            and your order concern. We are dedicated to providing fresh quality
-            pastries and ensuring customer satisfaction!
+            or new order. When contacting please include your name, order
+            number, and your order concern. We are dedicated to providing fresh
+            quality pastries and ensuring customer satisfaction!
           </p>
         </div>
       </div>
