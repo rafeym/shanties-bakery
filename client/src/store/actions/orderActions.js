@@ -17,6 +17,9 @@ import {
   UPDATE_ORDER_DELIVERY_STATUS_REQUEST,
   UPDATE_ORDER_DELIVERY_STATUS_SUCCESS,
   UPDATE_ORDER_DELIVERY_STATUS_FAIL,
+  CANCEL_ORDER_REQUEST,
+  CANCEL_ORDER_SUCCESS,
+  CANCEL_ORDER_FAIL,
 } from '../types/index'
 import { devurl } from '../../helper/URL'
 
@@ -166,3 +169,30 @@ export const updateOrderDeliveryStatusAction =
       dispatch({ type: UPDATE_ORDER_DELIVERY_STATUS_FAIL })
     }
   }
+
+export const cancelOrderAction = (id) => async (dispatch) => {
+  dispatch({
+    type: CANCEL_ORDER_REQUEST,
+  })
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
+  try {
+    const { data } = await axios.delete(
+      `${devurl}/api/orders/deleteOrder/${id}`,
+      config
+    )
+
+    dispatch({
+      type: CANCEL_ORDER_SUCCESS,
+      payload: data,
+    })
+    toast.success(data.msg)
+  } catch (error) {
+    dispatch({ type: CANCEL_ORDER_FAIL })
+  }
+}

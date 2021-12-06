@@ -14,6 +14,9 @@ import {
   UPDATE_ORDER_DELIVERY_STATUS_REQUEST,
   UPDATE_ORDER_DELIVERY_STATUS_SUCCESS,
   UPDATE_ORDER_DELIVERY_STATUS_FAIL,
+  CANCEL_ORDER_REQUEST,
+  CANCEL_ORDER_FAIL,
+  CANCEL_ORDER_SUCCESS,
 } from '../types/index'
 
 const initState = {
@@ -53,6 +56,15 @@ export const orderReducer = (state = initState, action) => {
         ...state,
         loading: false,
       }
+    case CANCEL_ORDER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        orders: [
+          ...state.orders.filter((order) => order._id !== payload.order._id),
+        ],
+      }
+    case CANCEL_ORDER_REQUEST:
     case UPDATE_ORDER_STATUS_REQUEST:
     case UPDATE_ORDER_DELIVERY_STATUS_REQUEST:
     case FETCH_ORDER_REQUEST:
@@ -62,6 +74,7 @@ export const orderReducer = (state = initState, action) => {
         ...state,
         loading: true,
       }
+    case CANCEL_ORDER_FAIL:
     case UPDATE_ORDER_STATUS_FAIL:
     case UPDATE_ORDER_DELIVERY_STATUS_FAIL:
     case FETCH_ORDER_FAIL:
