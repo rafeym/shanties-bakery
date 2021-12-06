@@ -31,8 +31,6 @@ const Menu = () => {
     page = 1
   }
 
-  console.log(products.length)
-
   useEffect(() => {
     dispatch(fetchProductsAction(page))
   }, [dispatch, page])
