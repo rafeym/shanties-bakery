@@ -16,5 +16,18 @@
     & p {
       margin-bottom: 10px;
     }
+    & .btn-options-container {
+      display: flex;
+      justify-content: flex-start;
+
+      & .option-btn {
+        background: black;
+        padding: 10px;
+        color: white;
+        margin-top: 20px;
+        margin-right: 5px;
+        cursor: pointer;
+      }
+    }
   }
 }
