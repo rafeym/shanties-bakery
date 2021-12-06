@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
+import _ from 'lodash'
 
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -13,6 +14,7 @@ import {
 } from '../../../store/selectors/orderSelector'
 
 import Spinner from '../../Spinner/Spinner'
+import NotFound from '../NotFound/NotFound'
 import './UpdateOrderForm.scss'
 
 const UpdateOrderForm = () => {
@@ -25,6 +27,8 @@ const UpdateOrderForm = () => {
 
   const { id } = useParams()
   const dispatch = useDispatch()
+
+  const orderEmpty = _.isEmpty(order)
 
   useEffect(() => {
     dispatch(fetchOrderAction(id))
@@ -48,6 +52,12 @@ const UpdateOrderForm = () => {
     <>
       {loading ? (
         <Spinner loading={loading} />
+      ) : orderEmpty ? (
+        <NotFound
+          url='/orders'
+          buttonTxt='Go To Orders'
+          text='Unable to find the order your looking for.'
+        />
       ) : (
         <div className='form-container'>
           <h1>Order #{orderNumber}</h1>

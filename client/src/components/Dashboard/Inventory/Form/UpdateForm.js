@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import _ from 'lodash'
 
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -12,6 +13,7 @@ import {
 } from '../../../../store/selectors/productSelector'
 
 import Spinner from '../../../Spinner/Spinner'
+import NotFound from '../../NotFound/NotFound'
 
 const UpdateForm = () => {
   const initState = {
@@ -27,6 +29,8 @@ const UpdateForm = () => {
   const dispatch = useDispatch()
   const loading = useSelector(selectLoading)
   const product = useSelector(selectProduct)
+
+  const productEmpty = _.isEmpty(product)
 
   const { id } = useParams()
 
@@ -82,6 +86,12 @@ const UpdateForm = () => {
     <>
       {loading ? (
         <Spinner loading={loading} />
+      ) : productEmpty ? (
+        <NotFound
+          url='/inventory'
+          buttonTxt='Go To Inventory'
+          text='Unable to find the inventory item.'
+        />
       ) : (
         <div className='form-container'>
           <h1>{formTitle}</h1>
