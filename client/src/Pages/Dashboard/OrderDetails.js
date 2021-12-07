@@ -43,12 +43,6 @@ const OrderDetails = () => {
       <div className='d-main'>
         {loading ? (
           <Spinner loading={loading} />
-        ) : order === null ? (
-          <NotFound
-            buttonTxt='Go To Orders'
-            text='Unable to find the order your looking for.'
-            url='/orders'
-          />
         ) : (
           <OrderDetail
             order={order}

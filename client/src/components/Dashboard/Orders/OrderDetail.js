@@ -21,8 +21,6 @@ const OrderDetail = ({ order, archiveOrder, cancelOrder }) => {
     deliveryStatus,
   } = order
 
-  console.log(order)
-
   return (
     <>
       {orderEmpty ? (
