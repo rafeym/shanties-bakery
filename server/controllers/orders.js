@@ -1,5 +1,6 @@
 const Order = require('../models/Order')
 const Product = require('../models/Product')
+const CancelledOrder = require('../models/CancelledOrder')
 const mongoose = require('mongoose')
 const { check, validationResult } = require('express-validator')
 const { v4: uuidv4 } = require('uuid')
@@ -129,6 +130,10 @@ module.exports.getOrders = async (req, res) => {
 
 module.exports.getOrderById = async (req, res) => {
   const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ msg: 'Order does not exist' })
+  }
 
   try {
     const order = await Order.findOne({ _id: id })
@@ -289,10 +294,47 @@ module.exports.deleteOrder = async (req, res) => {
       return res.status(500).json({ errors: error, msg: error.message })
     }
 
+    await CancelledOrder.create({
+      order,
+    })
+
     await Order.findByIdAndRemove(id)
 
-    return res.status(200).json({ msg: 'Order Deleted' })
+    return res.status(200).json({ msg: 'Order Deleted', order: order })
   } catch (error) {
     return res.status(500).json({ errors: error, msg: error.message })
+  }
+}
+
+module.exports.getCancelledOrders = async (req, res) => {
+  const { page } = req.params
+  const pageLimit = 8
+  const skip = (page - 1) * pageLimit
+
+  try {
+    const count = await CancelledOrder.find({}).countDocuments()
+    const cancelledOrders = await CancelledOrder.find({})
+      .sort({ _id: -1 })
+      .skip(skip)
+      .limit(pageLimit)
+
+    return res.status(200).json({ cancelledOrders, count, pageLimit })
+  } catch (error) {
+    res.status(404).json({ msg: error.message })
+  }
+}
+
+module.exports.getCancelledOrder = async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ msg: 'Order does not exist' })
+  }
+
+  try {
+    const order = await CancelledOrder.findOne({ _id: id })
+    return res.status(200).json({ order })
+  } catch (error) {
+    return res.status(400).json({ msg: error.message })
   }
 }
