@@ -58,6 +58,13 @@ const Navigation = () => {
             </li>
 
             <li className='nav-text'>
+              <Link to='/cancelled'>
+                <FaTimes />
+                <span className='nav-item-logo'>Cancelled</span>
+              </Link>
+            </li>
+
+            <li className='nav-text'>
               <Link to='/inventory'>
                 <FaDollyFlatbed />
                 <span className='nav-item-logo'>Inventory</span>

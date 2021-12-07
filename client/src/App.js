@@ -18,6 +18,8 @@ import Checkout from './Pages/Checkout'
 import Admin from './Pages/Dashboard/Home'
 import Orders from './Pages/Dashboard/Orders'
 import Completed from './Pages/Dashboard/Completed'
+import Cancelled from './Pages/Dashboard/Cancelled'
+import CancelledDetails from './Pages/Dashboard/CancelledDetails'
 import Inventory from './Pages/Dashboard/Inventory'
 import CreateProduct from './Pages/Dashboard/CreateProduct'
 import UpdateProduct from './Pages/Dashboard/UpdateProduct'
@@ -56,6 +58,12 @@ function App() {
             <CartPrivateRoute path='/checkout' exact component={Checkout} />
             <PrivateRoute path='/dashboard' exact component={Admin} />
             <PrivateRoute path='/orders/:page?' exact component={Orders} />
+            <PrivateRoute path='/cancelled' exact component={Cancelled} />
+            <PrivateRoute
+              path='/cancelled/order-details/:id'
+              exact
+              component={CancelledDetails}
+            />
             <PrivateRoute
               path='/orders/update-order-status/:id'
               exact

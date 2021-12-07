@@ -17,6 +17,12 @@ import {
   CANCEL_ORDER_REQUEST,
   CANCEL_ORDER_FAIL,
   CANCEL_ORDER_SUCCESS,
+  FETCH_CANCELLED_ORDERS_FAIL,
+  FETCH_CANCELLED_ORDERS_REQUEST,
+  FETCH_CANCELLED_ORDERS_SUCCESS,
+  FETCH_CANCELLED_ORDER_REQUEST,
+  FETCH_CANCELLED_ORDER_SUCCESS,
+  FETCH_CANCELLED_ORDER_FAIL,
 } from '../types/index'
 
 const initState = {
@@ -25,6 +31,8 @@ const initState = {
   count: 0,
   pageLimit: 0,
   order: {},
+  cancelledOrders: [],
+  cancelledOrder: {},
 }
 
 export const orderReducer = (state = initState, action) => {
@@ -56,6 +64,20 @@ export const orderReducer = (state = initState, action) => {
         ...state,
         loading: false,
       }
+    case FETCH_CANCELLED_ORDER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        cancelledOrder: payload.order,
+      }
+    case FETCH_CANCELLED_ORDERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        count: payload.count,
+        pageLimit: payload.pageLimit,
+        cancelledOrders: payload.cancelledOrders,
+      }
     case CANCEL_ORDER_SUCCESS:
       return {
         ...state,
@@ -64,6 +86,8 @@ export const orderReducer = (state = initState, action) => {
           ...state.orders.filter((order) => order._id !== payload.order._id),
         ],
       }
+    case FETCH_CANCELLED_ORDER_REQUEST:
+    case FETCH_CANCELLED_ORDERS_REQUEST:
     case CANCEL_ORDER_REQUEST:
     case UPDATE_ORDER_STATUS_REQUEST:
     case UPDATE_ORDER_DELIVERY_STATUS_REQUEST:
@@ -74,6 +98,8 @@ export const orderReducer = (state = initState, action) => {
         ...state,
         loading: true,
       }
+    case FETCH_CANCELLED_ORDER_FAIL:
+    case FETCH_CANCELLED_ORDERS_FAIL:
     case CANCEL_ORDER_FAIL:
     case UPDATE_ORDER_STATUS_FAIL:
     case UPDATE_ORDER_DELIVERY_STATUS_FAIL:

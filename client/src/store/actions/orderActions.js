@@ -20,6 +20,12 @@ import {
   CANCEL_ORDER_REQUEST,
   CANCEL_ORDER_SUCCESS,
   CANCEL_ORDER_FAIL,
+  FETCH_CANCELLED_ORDERS_REQUEST,
+  FETCH_CANCELLED_ORDERS_SUCCESS,
+  FETCH_CANCELLED_ORDERS_FAIL,
+  FETCH_CANCELLED_ORDER_REQUEST,
+  FETCH_CANCELLED_ORDER_SUCCESS,
+  FETCH_CANCELLED_ORDER_FAIL,
 } from '../types/index'
 import { devurl } from '../../helper/URL'
 
@@ -194,5 +200,59 @@ export const cancelOrderAction = (id) => async (dispatch) => {
     toast.success(data.msg)
   } catch (error) {
     dispatch({ type: CANCEL_ORDER_FAIL })
+  }
+}
+
+export const fetchCancelledOrdersAction = (page) => async (dispatch) => {
+  dispatch({ type: FETCH_CANCELLED_ORDERS_REQUEST })
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
+  try {
+    const { data } = await axios.get(
+      `${devurl}/api/orders/cancelled/${page}`,
+      config
+    )
+
+    dispatch({
+      type: FETCH_CANCELLED_ORDERS_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: FETCH_CANCELLED_ORDERS_FAIL,
+    })
+  }
+}
+
+export const fetchCancelledOrderAction = (id) => async (dispatch) => {
+  dispatch({
+    type: FETCH_CANCELLED_ORDER_REQUEST,
+  })
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
+  try {
+    const { data } = await axios.get(
+      `${devurl}/api/orders/cancelled/details/${id}`,
+      config
+    )
+
+    dispatch({
+      type: FETCH_CANCELLED_ORDER_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: FETCH_CANCELLED_ORDER_FAIL,
+    })
   }
 }

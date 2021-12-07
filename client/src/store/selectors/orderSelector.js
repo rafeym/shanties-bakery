@@ -26,3 +26,13 @@ export const selectOrder = createSelector(
   selectOrdersDomain,
   (orderReducer) => orderReducer.order
 )
+
+export const selectCancelledOrders = createSelector(
+  selectOrdersDomain,
+  (orderReducer) => orderReducer.cancelledOrders
+)
+
+export const selectCancelledOrder = createSelector(
+  selectOrdersDomain,
+  (orderReducer) => orderReducer.cancelledOrder
+)
