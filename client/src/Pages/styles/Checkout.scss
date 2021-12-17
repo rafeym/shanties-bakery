@@ -1,202 +1,230 @@
 @import '../../styles/variables.scss';
 
 .checkout-page-wrapper {
-    min-height: calc(100vh - 211px - 58px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    flex-direction: column;
+  min-height: calc(100vh - 211px - 58px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  flex-direction: column;
 }
 
 .checkout-container {
-    max-width: 900px;
-    width: 100%;
-    background: $white;
-    padding: 25px 30px;
+  max-width: 900px;
+  width: 100%;
+  background: $white;
+  padding: 25px 30px;
 
-    & .checkout-title {
-        font-size: 25px;
+  & .checkout-title {
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 30px;
+      background: $black;
+    }
+  }
+
+  & .checkout-form .user-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+
+    & .input-box {
+      margin-bottom: 10px;
+      width: calc(100% / 2 - 20px);
+
+      &:last-child {
+        width: calc(100%);
+      }
+
+      & .details {
+        display: block;
         font-weight: 500;
-        position: relative;
+        margin-bottom: 10px;
+      }
 
-        &::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 3px;
-            width: 30px;
-            background: $black;
-        }
-    }
-
-    & .checkout-form .user-details {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin: 20px 0 12px 0;
-
-        & .input-box {
-            margin-bottom: 10px;
-            width: calc(100% / 2 - 20px);
-
-            &:last-child {
-                width: calc(100%);
-            }
-
-            & .details {
-                display: block;
-                font-weight: 500;
-                margin-bottom: 10px;
-            }
-
-            & input {
-                height: 45px;
-                width: 100%;
-                outline: none;
-                border: 1px solid $grey;
-                border-radius: 5px;
-                padding-left: 15px;
-                font-size: 16px;
-                border-bottom-width: 3px;
-                transition: all 0.3s ease;
-
-                &:focus {
-                    border-color: $black;
-                }
-            }
-        }
-    }
-
-    .type-container {
-        border: 2px solid $grey;
-        margin: 20px 0 12px 0;
-        padding: 20px;
-        padding-left: 30px;
+      & input {
+        height: 45px;
+        width: 100%;
+        outline: none;
+        border: 1px solid $grey;
         border-radius: 5px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        border-bottom-width: 5px;
+        padding-left: 15px;
+        font-size: 16px;
+        border-bottom-width: 3px;
+        transition: all 0.3s ease;
 
-        & .type-icon {
-            font-size: 20px;
-            color: $black;
+        &:focus {
+          border-color: $black;
         }
-        & span {
-            margin-left: 10px;
-            font-size: 15px;
-            letter-spacing: 1px;
-            color: $black;
-        }
+      }
+    }
+  }
+
+  .type-container {
+    border: 2px solid $grey;
+    margin: 20px 0 12px 0;
+    padding: 20px;
+    padding-left: 30px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom-width: 5px;
+
+    & .type-icon {
+      font-size: 20px;
+      color: $black;
+    }
+    & span {
+      margin-left: 10px;
+      font-size: 15px;
+      letter-spacing: 1px;
+      color: $black;
+    }
+  }
+
+  .payment-container {
+    border: 2px solid $grey;
+    margin: 20px 0 12px 0;
+    padding: 20px;
+    padding-left: 30px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    border-bottom-width: 5px;
+
+    & p {
+      font-size: 15px;
+      color: $black;
     }
 
-    .payment-container {
-        border: 2px solid $grey;
-        margin: 20px 0 12px 0;
-        padding: 20px;
-        padding-left: 30px;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: column;
-        border-bottom-width: 5px;
+    & .payment-icon-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 10px;
 
-        & p {
-            font-size: 15px;
-            color: $black;
-        }
+      & .payment-icon {
+        font-size: 20px;
+        color: $black;
+      }
 
-        & .payment-icon-container {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            margin-top: 10px;
-
-            & .payment-icon {
-                font-size: 20px;
-                color: $black;
-            }
-
-            & span {
-                margin-left: 10px;
-                color: $black;
-            }
-        }
+      & span {
+        margin-left: 10px;
+        color: $black;
+      }
     }
+  }
 }
 
 .summary-container {
-    margin: 20px 0 12px 0;
-    padding: 15px;
-    padding-left: 30px;
+  margin: 20px 0 12px 0;
 
-    & .cart-item-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+  & table {
+    width: 100%;
+    border-collapse: collapse;
 
-        & input {
-            width: 40px;
-            height: 30px;
-            padding: 5px;
-        }
-
-        & .cart-item-icon:hover {
-            cursor: pointer;
-        }
-
-        & .checkout-cart-item-name {
-            color: $black;
-        }
+    & p {
+      font-size: 15px;
+      color: $black;
     }
 
-    & .cart-border {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border: 1px solid $grey;
+    & th {
+      text-align: left;
+      padding: 5px;
+      color: $white;
+      background: $black;
+      font-weight: normal;
+      &:last-child {
+        text-align: right;
+      }
     }
 
-    & .checkout-total-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    & td {
+      padding: 10px 5px;
+      &:last-child {
+        text-align: right;
+      }
 
-        & p {
-            font-weight: 600;
-        }
+      & input {
+        width: 40px;
+        height: 30px;
+        padding: 5px;
+      }
 
-        & span {
-            font-weight: 600;
+      & .remove-cta {
+        color: $black;
+        text-decoration: underline;
+        font-size: 12px;
+
+        &:hover {
+          cursor: pointer;
         }
+      }
+
+      & img {
+        width: 80px;
+        height: 80px;
+        margin-right: 10px;
+      }
     }
+
+    & .cart-info {
+      display: flex;
+      //   flex-wrap: wrap;
+      align-items: center;
+    }
+  }
+
+  .total-price {
+    display: flex;
+    justify-content: flex-end;
+
+    & table {
+      border-top: 3px solid $black;
+      width: 100%;
+      max-width: 350px;
+
+      & td:last-child {
+        text-align: right;
+      }
+    }
+  }
 }
 
 .c-btn-container {
-    background: $black;
-    color: $white;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    margin-top: 20px;
-    text-transform: uppercase;
-    border-radius: 5px;
+  background: $black;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  border-radius: 5px;
 
-    &:hover {
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 @media screen and (max-width: 584px) {
-    .checkout-container {
-        max-width: 100%;
+  .checkout-container {
+    max-width: 100%;
 
-        & .checkout-form .user-details {
-            & .input-box {
-                margin-bottom: 15px;
-                width: 100%;
-            }
-        }
+    & .checkout-form .user-details {
+      & .input-box {
+        margin-bottom: 15px;
+        width: 100%;
+      }
     }
+  }
 }

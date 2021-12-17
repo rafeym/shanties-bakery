@@ -13,7 +13,8 @@ import Footer from '../components/Footer/Footer'
 import Header from '../components/Navbar/Header'
 
 import Spinner from '../components/Spinner/Spinner'
-import { FaTruck, FaMoneyBill, FaRegCreditCard, FaTimes } from 'react-icons/fa'
+import { FaTruck, FaMoneyBill, FaRegCreditCard } from 'react-icons/fa'
+
 import './styles/Checkout.scss'
 
 const Checkout = () => {
@@ -155,38 +156,53 @@ const Checkout = () => {
 
               <div className='checkout-title'>Summary</div>
               <div className='summary-container'>
-                {cart.map((item) => {
-                  return (
+                <table>
+                  <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                  </tr>
+                  {cart.map((item) => (
                     <>
-                      <div className='cart-item-container'>
-                        <FaTimes
-                          className='cart-item-icon'
-                          onClick={() => removeProduct(item.product)}
-                        />
-                        <Link
-                          className='checkout-cart-item-name'
-                          to={`/product/${item.product}`}
-                        >
-                          <p>{item.name}</p>
-                        </Link>
-                        <input
-                          type='number'
-                          value={item.qty}
-                          onChange={(e) =>
-                            qtyChangeHandler(item.product, e.target.value)
-                          }
-                          min={1}
-                          max={10}
-                        />
-                        <p>${item.price}</p>
-                      </div>
-                      <div className='cart-border' />
+                      <tr>
+                        <td>
+                          <div className='cart-info'>
+                            <div>
+                              <Link to={`/product/${item.product}`}>
+                                <p>{item.name}</p>
+                              </Link>
+                              <div
+                                className='remove-cta'
+                                onClick={() => removeProduct(item.product)}
+                              >
+                                Remove
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <input
+                            type='number'
+                            min={1}
+                            max={10}
+                            value={item.qty}
+                            onChange={(e) =>
+                              qtyChangeHandler(item.product, e.target.value)
+                            }
+                          />
+                        </td>
+                        <td>${item.price}</td>
+                      </tr>
                     </>
-                  )
-                })}
-                <div className='checkout-total-container'>
-                  <p>Order Total: </p>
-                  <span>${getCartTotal().toFixed(2)}</span>
+                  ))}
+                </table>
+                <div className='total-price'>
+                  <table>
+                    <tr>
+                      <td>Total</td>
+                      <td>${getCartTotal().toFixed(2)}</td>
+                    </tr>
+                  </table>
                 </div>
               </div>
               <div className='c-btn-container' onClick={handleSubmit}>
