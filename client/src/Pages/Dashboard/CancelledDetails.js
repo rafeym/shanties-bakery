@@ -17,7 +17,7 @@ const CancelledDetails = () => {
 
   const cancelledOrder = useSelector(selectCancelledOrder)
 
-  useEffect(async () => {
+  useEffect(() => {
     async function fetchCancelledOrders() {
       await dispatch(fetchCancelledOrderAction(id))
       setLoading(false)
