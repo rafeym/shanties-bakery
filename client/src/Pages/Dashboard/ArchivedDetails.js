@@ -17,9 +17,12 @@ const ArchivedDetails = () => {
 
   const archivedOrder = useSelector(selectArchivedOrder)
 
-  useEffect(async () => {
-    await dispatch(fetchArchivedOrderAction(id))
-    setLoading(false)
+  useEffect(() => {
+    async function fetchArchivedOrders() {
+      await dispatch(fetchArchivedOrderAction(id))
+      setLoading(false)
+    }
+    fetchArchivedOrders()
   }, [dispatch, id])
 
   const { order = {} } = archivedOrder

@@ -31,9 +31,12 @@ const UpdateForm = () => {
 
   const { id } = useParams()
 
-  useEffect(async () => {
-    await dispatch(fetchProductAction(id))
-    setLoading(false)
+  useEffect(() => {
+    async function fetchProduct() {
+      await dispatch(fetchProductAction(id))
+      setLoading(false)
+    }
+    fetchProduct()
   }, [id, dispatch])
 
   useEffect(() => {

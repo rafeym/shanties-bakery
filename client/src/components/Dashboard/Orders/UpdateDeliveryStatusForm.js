@@ -29,9 +29,12 @@ const UpdateDeliveryStatusForm = () => {
 
   const orderEmpty = _.isEmpty(order)
 
-  useEffect(async () => {
-    await dispatch(fetchOrderAction(id))
-    setLoading(false)
+  useEffect(() => {
+    async function fetchOrder() {
+      await dispatch(fetchOrderAction(id))
+      setLoading(false)
+    }
+    fetchOrder()
   }, [dispatch, id])
 
   useEffect(() => {

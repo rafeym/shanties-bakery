@@ -25,9 +25,12 @@ const OrderDetails = () => {
 
   const order = useSelector(selectOrder)
 
-  useEffect(async () => {
-    await dispatch(fetchOrderAction(id))
-    setLoading(false)
+  useEffect(() => {
+    async function fetchOrder() {
+      await dispatch(fetchOrderAction(id))
+      setLoading(false)
+    }
+    fetchOrder()
   }, [dispatch, id])
 
   const archiveOrder = (id) => {
