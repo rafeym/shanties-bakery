@@ -10,10 +10,7 @@ import {
   updateOrderDeliveryStatusAction,
 } from '../../../store/actions/orderActions'
 
-import {
-  selectOrder,
-  selectLoading,
-} from '../../../store/selectors/orderSelector'
+import { selectOrder } from '../../../store/selectors/orderSelector'
 
 import Spinner from '../../Spinner/Spinner'
 import './UpdateOrderForm.scss'
@@ -21,9 +18,9 @@ import NotFound from '../NotFound/NotFound'
 
 const UpdateDeliveryStatusForm = () => {
   const [deliveryStat, setDeliveryStat] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const order = useSelector(selectOrder)
-  const loading = useSelector(selectLoading)
 
   const { orderNumber } = order
 
@@ -32,8 +29,9 @@ const UpdateDeliveryStatusForm = () => {
 
   const orderEmpty = _.isEmpty(order)
 
-  useEffect(() => {
-    dispatch(fetchOrderAction(id))
+  useEffect(async () => {
+    await dispatch(fetchOrderAction(id))
+    setLoading(false)
   }, [dispatch, id])
 
   useEffect(() => {

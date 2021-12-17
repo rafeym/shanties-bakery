@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 
 import {
+  archiveOrderAction,
   cancelOrderAction,
   fetchOrderAction,
 } from '../../store/actions/orderActions'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectLoading, selectOrder } from '../../store/selectors/orderSelector'
+import { selectOrder } from '../../store/selectors/orderSelector'
 
 import { useParams } from 'react-router'
 
@@ -17,19 +18,21 @@ import NotFound from '../../components/Dashboard/NotFound/NotFound'
 import Spinner from '../../components/Spinner/Spinner'
 
 const OrderDetails = () => {
+  const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
   const { id } = useParams()
   const history = useHistory()
 
   const order = useSelector(selectOrder)
-  const loading = useSelector(selectLoading)
 
-  useEffect(() => {
-    dispatch(fetchOrderAction(id))
+  useEffect(async () => {
+    await dispatch(fetchOrderAction(id))
+    setLoading(false)
   }, [dispatch, id])
 
   const archiveOrder = (id) => {
-    console.log(id)
+    dispatch(archiveOrderAction(id))
+    history.push('/orders')
   }
 
   const cancelOrder = (id) => {
@@ -43,6 +46,12 @@ const OrderDetails = () => {
       <div className='d-main'>
         {loading ? (
           <Spinner loading={loading} />
+        ) : order === null ? (
+          <NotFound
+            buttonTxt='Go Back'
+            text='The order you are looking for does not exist.'
+            url='/orders'
+          />
         ) : (
           <OrderDetail
             order={order}

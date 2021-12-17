@@ -7,10 +7,7 @@ import {
   fetchProductAction,
   updateProductAction,
 } from '../../../../store/actions/productActions'
-import {
-  selectLoading,
-  selectProduct,
-} from '../../../../store/selectors/productSelector'
+import { selectProduct } from '../../../../store/selectors/productSelector'
 
 import Spinner from '../../../Spinner/Spinner'
 import NotFound from '../../NotFound/NotFound'
@@ -25,17 +22,18 @@ const UpdateForm = () => {
   }
   const [formData, setFormData] = useState(initState)
   const [formTitle, setFormTitle] = useState('Update Product')
+  const [loading, setLoading] = useState(true)
 
   const dispatch = useDispatch()
-  const loading = useSelector(selectLoading)
   const product = useSelector(selectProduct)
 
   const productEmpty = _.isEmpty(product)
 
   const { id } = useParams()
 
-  useEffect(() => {
-    dispatch(fetchProductAction(id))
+  useEffect(async () => {
+    await dispatch(fetchProductAction(id))
+    setLoading(false)
   }, [id, dispatch])
 
   useEffect(() => {
