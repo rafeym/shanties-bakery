@@ -1,6 +1,7 @@
 const Order = require('../models/Order')
 const Product = require('../models/Product')
 const CancelledOrder = require('../models/CancelledOrder')
+const ArchivedOrder = require('../models/ArchivedOrder')
 const mongoose = require('mongoose')
 const { check, validationResult } = require('express-validator')
 const { v4: uuidv4 } = require('uuid')
@@ -75,9 +76,8 @@ module.exports.createOrder = async (req, res) => {
       // Email integration
       const message = {
         to: email,
-        from: 'client.dev.2021@gmail.com',
-        subject: 'Order confirmation!',
-        templateId: 'd-44f1e3fe7d2340c7addc7557d7c3d51d',
+        from: 'shantiesbakery@gmail.com',
+        templateId: 'd-7c09b2179c564cc8b05082e495f97384',
 
         dynamic_template_data: {
           fname,
@@ -163,10 +163,9 @@ module.exports.updateOrderStatus = async (req, res) => {
       // Send email when order status is complete
       if (order.orderStatus === true) {
         const message = {
-          to: order.email,
-          from: 'client.dev.2021@gmail.com',
-          subject: 'Your order is ready!',
-          templateId: 'd-8c42ea9e44214d1f8a5ac56a50b4ab83',
+          to: email,
+          from: 'shantiesbakery@gmail.com',
+          templateId: 'd-14bb722afbec4cf9a38f39061709e803',
 
           dynamic_template_data: {
             fname,
@@ -218,10 +217,9 @@ module.exports.updateDeliveryStatus = async (req, res) => {
       // Send email when order status is complete
       if (order.deliveryStatus === true) {
         const message = {
-          to: order.email,
-          from: 'client.dev.2021@gmail.com',
-          subject: 'Your order is ready!',
-          templateId: 'd-ae6b2190bbe945d59e41fccc24d27324',
+          to: email,
+          from: 'shantiesbakery@gmail.com',
+          templateId: 'd-752e97be9dad43b5b1fa7d6523cc4e0f',
 
           dynamic_template_data: {
             fname,
@@ -269,8 +267,8 @@ module.exports.deleteOrder = async (req, res) => {
       // Send cancellation email
       const message = {
         to: email,
-        from: 'client.dev.2021@gmail.com',
-        templateId: 'd-15a3fc104a1d414cafd699c97e830912',
+        from: 'shantiesbakery@gmail.com',
+        templateId: 'd-f309a9fe2bec47f09bc776e23beb31ff',
 
         dynamic_template_data: {
           fname,
@@ -300,7 +298,7 @@ module.exports.deleteOrder = async (req, res) => {
 
     await Order.findByIdAndRemove(id)
 
-    return res.status(200).json({ msg: 'Order Deleted', order: order })
+    return res.status(200).json({ msg: 'Order Cancelled', order: order })
   } catch (error) {
     return res.status(500).json({ errors: error, msg: error.message })
   }
@@ -333,6 +331,60 @@ module.exports.getCancelledOrder = async (req, res) => {
 
   try {
     const order = await CancelledOrder.findOne({ _id: id })
+    return res.status(200).json({ order })
+  } catch (error) {
+    return res.status(400).json({ msg: error.message })
+  }
+}
+
+module.exports.archiveOrder = async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ msg: 'Order does not exist' })
+  }
+  try {
+    const order = await Order.findById(id)
+
+    await ArchivedOrder.create({
+      order,
+    })
+
+    await Order.findByIdAndRemove(id)
+
+    return res.status(200).json({ msg: 'Order Archived', order })
+  } catch (error) {
+    return res.status(500).json({ errors: error, msg: error.message })
+  }
+}
+
+module.exports.getArchivedOrders = async (req, res) => {
+  const { page } = req.params
+  const pageLimit = 8
+  const skip = (page - 1) * pageLimit
+
+  try {
+    const count = await ArchivedOrder.find({}).countDocuments()
+    const archivedOrders = await ArchivedOrder.find({})
+      .sort({ _id: -1 })
+      .skip(skip)
+      .limit(pageLimit)
+
+    return res.status(200).json({ archivedOrders, count, pageLimit })
+  } catch (error) {
+    res.status(404).json({ msg: error.message })
+  }
+}
+
+module.exports.getArchivedOrder = async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ msg: 'Order does not exist' })
+  }
+
+  try {
+    const order = await ArchivedOrder.findOne({ _id: id })
     return res.status(200).json({ order })
   } catch (error) {
     return res.status(400).json({ msg: error.message })

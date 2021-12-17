@@ -9,6 +9,9 @@ const {
   deleteOrder,
   getCancelledOrders,
   getCancelledOrder,
+  archiveOrder,
+  getArchivedOrders,
+  getArchivedOrder,
 } = require('../controllers/orders')
 
 const router = express.Router()
@@ -21,5 +24,8 @@ router.put('/updateDeliveryStatus/:id', updateDeliveryStatus)
 router.delete('/deleteOrder/:id', deleteOrder)
 router.get('/cancelled/:page', getCancelledOrders)
 router.get('/cancelled/details/:id', getCancelledOrder)
+router.delete('/archiveOrder/:id', archiveOrder)
+router.get('/archivedOrders/:page', getArchivedOrders)
+router.get('/archivedOrders/details/:id', getArchivedOrder)
 
 module.exports = router
