@@ -48,15 +48,17 @@ const OrderDetail = ({ order, archiveOrder, cancelOrder }) => {
 
             <p>Order Total: ${total}</p>
             <div className='btn-options-container'>
-              {!orderStatus && !deliveryStatus ? null : (
+              {orderStatus && deliveryStatus ? (
                 <div className='option-btn' onClick={() => archiveOrder(_id)}>
                   Archive Order
                 </div>
-              )}
+              ) : null}
 
-              <div className='option-btn' onClick={() => cancelOrder(_id)}>
-                Cancel Order
-              </div>
+              {orderStatus || deliveryStatus ? null : (
+                <div className='option-btn' onClick={() => cancelOrder(_id)}>
+                  Cancel Order
+                </div>
+              )}
             </div>
           </div>
         </div>
