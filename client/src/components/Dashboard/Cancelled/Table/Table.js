@@ -6,7 +6,6 @@ import { FaEye } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 const Table = ({ cancelledOrders, page, count, pageLimit }) => {
-  console.log(cancelledOrders)
   return (
     <>
       <div className='recent-grid'>

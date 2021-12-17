@@ -21,7 +21,7 @@ const Details = ({ order }) => {
       {orderEmpty ? (
         <NotFound
           buttonTxt='Go Back'
-          text='Unable to find that order.'
+          text='The order you are looking for does not exist.'
           url='/cancelled'
         />
       ) : (
