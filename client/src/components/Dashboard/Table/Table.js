@@ -6,7 +6,7 @@ import Pagination from '../../Pagination/Pagination'
 
 import './Table.scss'
 
-const Table = ({ orders, count, page, pageLimit }) => {
+const Table = ({ orders, count, page, pageLimit, button = '', url = '' }) => {
   return (
     <>
       <div className='recent-grid'>
@@ -14,6 +14,11 @@ const Table = ({ orders, count, page, pageLimit }) => {
           <div className='card'>
             <div className='card-header'>
               <h2>Recent Orders</h2>
+              {button === '' ? null : (
+                <Link to={url} className='order-cta-btn'>
+                  {button}
+                </Link>
+              )}
             </div>
             <div className='card-body'>
               <div className='table-responsive'>
