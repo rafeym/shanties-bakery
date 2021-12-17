@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchCancelledOrdersAction } from '../../store/actions/orderActions'
 import {
   selectCancelledOrders,
-  selectCount,
+  selectCancelledOrdersCount,
   selectLoading,
   selectPageLimit,
 } from '../../store/selectors/orderSelector'
@@ -19,7 +19,7 @@ const Cancelled = () => {
 
   const cancelledOrders = useSelector(selectCancelledOrders)
   const loading = useSelector(selectLoading)
-  const count = useSelector(selectCount)
+  const count = useSelector(selectCancelledOrdersCount)
   const pageLimit = useSelector(selectPageLimit)
 
   let { page } = useParams()
