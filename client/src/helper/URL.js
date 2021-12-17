@@ -1,1 +1,1 @@
-export const devurl = 'https://shanties-bakery.herokuapp.com/'
+export const devurl = 'https://shanties-bakery.herokuapp.com'
