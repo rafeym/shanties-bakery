@@ -38,8 +38,13 @@ if (token) {
   const decoded = verifyToken(token)
   if (decoded) {
     initState.token = token
-    const { user } = decoded
-    initState.user = user
+    const {
+      user: { name, email },
+    } = decoded
+    initState.user = {
+      name,
+      email,
+    }
   }
 }
 
@@ -58,12 +63,17 @@ export const userReducer = (state = initState, action) => {
       }
     case LOGIN_SUCCESS:
       const decoded = verifyToken(payload)
-      const { user } = decoded
+      const {
+        user: { name, email },
+      } = decoded
       return {
         ...state,
         token: payload,
         loading: false,
-        user: user,
+        user: {
+          name,
+          email,
+        },
       }
     case GET_SUBSCRIBER_LIST_FAIL:
     case SUBSCRIBE_FAIL:

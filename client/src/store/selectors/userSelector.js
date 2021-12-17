@@ -6,3 +6,8 @@ export const selectSubscribers = createSelector(
   selectUserDomain,
   (userReducer) => userReducer.subscribers
 )
+
+export const selectUser = createSelector(
+  selectUserDomain,
+  (userReducer) => userReducer.user
+)

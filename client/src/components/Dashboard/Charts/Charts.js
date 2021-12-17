@@ -4,37 +4,28 @@ import Chart from 'react-apexcharts'
 
 import './Charts.scss'
 
-const Charts = ({ totalSubscribers, totalEarnings }) => {
-  const earningState = {
+const Charts = ({ totalOrders, cnlOrders, activeOrders }) => {
+  const ordersState = {
     options: {
       chart: {
         id: 'basic-bar',
       },
       xaxis: {
-        categories: ['Earnings'],
+        categories: ['Active Orders', 'Total Orders', 'Cancelled Orders'],
       },
     },
     series: [
       {
-        name: 'value',
-        data: [totalEarnings],
+        name: 'Active Orders',
+        data: [activeOrders],
       },
-    ],
-  }
-
-  const subState = {
-    options: {
-      chart: {
-        id: 'basic-bar',
-      },
-      xaxis: {
-        categories: ['Subscribers'],
-      },
-    },
-    series: [
       {
-        name: 'value',
-        data: [totalSubscribers],
+        name: 'Total Orders',
+        data: [totalOrders],
+      },
+      {
+        name: 'Cancelled Orders',
+        data: [cnlOrders],
       },
     ],
   }
@@ -45,19 +36,8 @@ const Charts = ({ totalSubscribers, totalEarnings }) => {
         <div className='chart-container'>
           <Chart
             className='chart-style'
-            options={subState.options}
-            series={subState.series}
-            type='bar'
-          />
-        </div>
-      </div>
-
-      <div className='charts'>
-        <div className='chart-container'>
-          <Chart
-            className='chart-style'
-            options={earningState.options}
-            series={earningState.series}
+            options={ordersState.options}
+            series={ordersState.series}
             type='bar'
           />
         </div>
