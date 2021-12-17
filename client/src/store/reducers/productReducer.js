@@ -24,12 +24,6 @@ const initState = {
   product: {},
 }
 
-// const formatProds = (productsArr) => {
-//   return productsArr.reduce((acc, curr) => {
-//     return { ...acc, [curr._id]: { ...curr } }
-//   }, {})
-// }
-
 export const productReducer = (state = initState, action) => {
   const { type, payload } = action
   switch (type) {
@@ -59,10 +53,6 @@ export const productReducer = (state = initState, action) => {
         ...state,
         count: payload.count,
         pageLimit: payload.pageLimit,
-        // products: {
-        //   ...state.products,
-        //   products: formatProds(payload.products),
-        // },
         products: payload.products,
         loading: false,
       }
@@ -70,10 +60,6 @@ export const productReducer = (state = initState, action) => {
       return {
         ...state,
         loading: false,
-        // products: {
-        //   ...state.products,
-        //   [payload.product._id]: { ...payload.product },
-        // },
         products: [payload.product, ...state.products],
       }
     case UPDATE_PRODUCT_FAIL:
