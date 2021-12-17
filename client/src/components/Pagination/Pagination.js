@@ -22,7 +22,7 @@ const Pagination = ({ count, page, pageLimit, url }) => {
     const store = []
     for (let i = startLoop; i <= endLoop; i++) {
       store.push(
-        <li key={i} className={i == page ? 'active-page' : ''}>
+        <li key={i} className={i === parseInt(page) ? 'active-page' : ''}>
           <Link to={`/${url}/${i}`}>{i}</Link>
         </li>
       )
