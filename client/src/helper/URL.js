@@ -1,1 +1,1 @@
-export const devurl = 'http://localhost:5000'
+export const devurl = 'https://shanties-bakery.herokuapp.com/'
