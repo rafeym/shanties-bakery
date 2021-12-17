@@ -36,3 +36,23 @@ export const selectCancelledOrder = createSelector(
   selectOrdersDomain,
   (orderReducer) => orderReducer.cancelledOrder
 )
+
+export const selectArchivedOrders = createSelector(
+  selectOrdersDomain,
+  (orderReducer) => orderReducer.archivedOrders
+)
+
+export const selectArchivedOrder = createSelector(
+  selectOrdersDomain,
+  (orderReducer) => orderReducer.archivedOrder
+)
+
+export const selectArchivedOrdersCount = createSelector(
+  selectOrdersDomain,
+  (orderReducer) => orderReducer.archivedOrdersCount
+)
+
+export const selectCancelledOrdersCount = createSelector(
+  selectOrdersDomain,
+  (orderReducer) => orderReducer.cancelledOrdersCount
+)

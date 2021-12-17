@@ -26,6 +26,15 @@ import {
   FETCH_CANCELLED_ORDER_REQUEST,
   FETCH_CANCELLED_ORDER_SUCCESS,
   FETCH_CANCELLED_ORDER_FAIL,
+  ARCHIVE_ORDER_REQUEST,
+  ARCHIVE_ORDER_SUCCESS,
+  ARCHIVE_ORDER_FAIL,
+  FETCH_ARCHIVED_ORDERS_REQUEST,
+  FETCH_ARCHIVED_ORDERS_SUCCESS,
+  FETCH_ARCHIVED_ORDERS_FAIL,
+  FETCH_ARCHIVED_ORDER_REQUEST,
+  FETCH_ARCHIVED_ORDER_SUCCESS,
+  FETCH_ARCHIVED_ORDER_FAIL,
 } from '../types/index'
 import { devurl } from '../../helper/URL'
 
@@ -253,6 +262,86 @@ export const fetchCancelledOrderAction = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: FETCH_CANCELLED_ORDER_FAIL,
+    })
+  }
+}
+
+export const archiveOrderAction = (id) => async (dispatch) => {
+  dispatch({
+    type: ARCHIVE_ORDER_REQUEST,
+  })
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
+  try {
+    const { data } = await axios.delete(
+      `${devurl}/api/orders/archiveOrder/${id}`,
+      config
+    )
+
+    dispatch({
+      type: ARCHIVE_ORDER_SUCCESS,
+      payload: data,
+    })
+
+    toast.success(data.msg)
+  } catch (error) {
+    dispatch({ type: ARCHIVE_ORDER_FAIL })
+  }
+}
+
+export const fetchArchivedOrdersAction = (page) => async (dispatch) => {
+  dispatch({ type: FETCH_ARCHIVED_ORDERS_REQUEST })
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
+  try {
+    const { data } = await axios.get(
+      `${devurl}/api/orders/archivedOrders/${page}`,
+      config
+    )
+
+    dispatch({
+      type: FETCH_ARCHIVED_ORDERS_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: FETCH_ARCHIVED_ORDERS_FAIL,
+    })
+  }
+}
+
+export const fetchArchivedOrderAction = (id) => async (dispatch) => {
+  dispatch({ type: FETCH_ARCHIVED_ORDER_REQUEST })
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
+  try {
+    const { data } = await axios.get(
+      `${devurl}/api/orders/archivedOrders/details/${id}`,
+      config
+    )
+
+    dispatch({
+      type: FETCH_ARCHIVED_ORDER_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: FETCH_ARCHIVED_ORDER_FAIL,
     })
   }
 }

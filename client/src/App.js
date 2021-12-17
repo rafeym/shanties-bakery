@@ -17,7 +17,6 @@ import Checkout from './Pages/Checkout'
 
 import Admin from './Pages/Dashboard/Home'
 import Orders from './Pages/Dashboard/Orders'
-import Completed from './Pages/Dashboard/Completed'
 import Cancelled from './Pages/Dashboard/Cancelled'
 import CancelledDetails from './Pages/Dashboard/CancelledDetails'
 import Inventory from './Pages/Dashboard/Inventory'
@@ -26,6 +25,8 @@ import UpdateProduct from './Pages/Dashboard/UpdateProduct'
 import UpdateOrder from './Pages/Dashboard/UpdateOrder'
 import UpdateDelivery from './Pages/Dashboard/UpdateDelivery'
 import OrderDetails from './Pages/Dashboard/OrderDetails'
+import Archived from './Pages/Dashboard/Archived'
+import ArchivedDetails from './Pages/Dashboard/ArchivedDetails'
 
 import ScrollToTop from './helper/ScrollToTop'
 import { ToastContainer } from 'react-toastify'
@@ -58,7 +59,17 @@ function App() {
             <CartPrivateRoute path='/checkout' exact component={Checkout} />
             <PrivateRoute path='/dashboard' exact component={Admin} />
             <PrivateRoute path='/orders/:page?' exact component={Orders} />
-            <PrivateRoute path='/cancelled' exact component={Cancelled} />
+            <PrivateRoute path='/completed/:page?' exact component={Archived} />
+            <PrivateRoute
+              path='/completed/order-details/:id'
+              exact
+              component={ArchivedDetails}
+            />
+            <PrivateRoute
+              path='/cancelled/:page?'
+              exact
+              component={Cancelled}
+            />
             <PrivateRoute
               path='/cancelled/order-details/:id'
               exact
@@ -79,7 +90,6 @@ function App() {
               exact
               component={OrderDetails}
             />
-            <PrivateRoute path='/completed' exact component={Completed} />
             <PrivateRoute
               path='/inventory/:page?'
               exact

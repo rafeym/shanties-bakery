@@ -23,16 +23,29 @@ import {
   FETCH_CANCELLED_ORDER_REQUEST,
   FETCH_CANCELLED_ORDER_SUCCESS,
   FETCH_CANCELLED_ORDER_FAIL,
+  ARCHIVE_ORDER_REQUEST,
+  ARCHIVE_ORDER_SUCCESS,
+  ARCHIVE_ORDER_FAIL,
+  FETCH_ARCHIVED_ORDERS_REQUEST,
+  FETCH_ARCHIVED_ORDERS_SUCCESS,
+  FETCH_ARCHIVED_ORDERS_FAIL,
+  FETCH_ARCHIVED_ORDER_REQUEST,
+  FETCH_ARCHIVED_ORDER_SUCCESS,
+  FETCH_ARCHIVED_ORDER_FAIL,
 } from '../types/index'
 
 const initState = {
   loading: false,
   orders: [],
-  count: 0,
-  pageLimit: 0,
   order: {},
   cancelledOrders: [],
   cancelledOrder: {},
+  archivedOrders: [],
+  archivedOrder: {},
+  count: 0,
+  pageLimit: 0,
+  cancelledOrdersCount: 0,
+  archivedOrdersCount: 0,
 }
 
 export const orderReducer = (state = initState, action) => {
@@ -64,6 +77,28 @@ export const orderReducer = (state = initState, action) => {
         ...state,
         loading: false,
       }
+    case FETCH_ARCHIVED_ORDER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        archivedOrder: payload.order,
+      }
+    case FETCH_ARCHIVED_ORDERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        archivedOrdersCount: payload.count,
+        pageLimit: payload.pageLimit,
+        archivedOrders: payload.archivedOrders,
+      }
+    case ARCHIVE_ORDER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        orders: [
+          ...state.orders.filter((order) => order._id !== payload.order._id),
+        ],
+      }
     case FETCH_CANCELLED_ORDER_SUCCESS:
       return {
         ...state,
@@ -74,7 +109,7 @@ export const orderReducer = (state = initState, action) => {
       return {
         ...state,
         loading: false,
-        count: payload.count,
+        cancelledOrdersCount: payload.count,
         pageLimit: payload.pageLimit,
         cancelledOrders: payload.cancelledOrders,
       }
@@ -86,6 +121,9 @@ export const orderReducer = (state = initState, action) => {
           ...state.orders.filter((order) => order._id !== payload.order._id),
         ],
       }
+    case FETCH_ARCHIVED_ORDER_REQUEST:
+    case FETCH_ARCHIVED_ORDERS_REQUEST:
+    case ARCHIVE_ORDER_REQUEST:
     case FETCH_CANCELLED_ORDER_REQUEST:
     case FETCH_CANCELLED_ORDERS_REQUEST:
     case CANCEL_ORDER_REQUEST:
@@ -98,6 +136,9 @@ export const orderReducer = (state = initState, action) => {
         ...state,
         loading: true,
       }
+    case FETCH_ARCHIVED_ORDER_FAIL:
+    case FETCH_ARCHIVED_ORDERS_FAIL:
+    case ARCHIVE_ORDER_FAIL:
     case FETCH_CANCELLED_ORDER_FAIL:
     case FETCH_CANCELLED_ORDERS_FAIL:
     case CANCEL_ORDER_FAIL:
