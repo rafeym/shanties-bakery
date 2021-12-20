@@ -16,6 +16,8 @@ import {
 } from '../store/selectors/productSelector'
 import { fetchProductsAction } from '../store/actions/productActions'
 
+import { Helmet } from 'react-helmet'
+
 import './styles/Menu.scss'
 
 const Menu = () => {
@@ -37,6 +39,13 @@ const Menu = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Menu</title>
+        <meta
+          name='description'
+          content='Browse our sweet and savoury West Indian bakery '
+        />
+      </Helmet>
       <Header />
       <section id='menu-products'>
         <div className='product-container'>
