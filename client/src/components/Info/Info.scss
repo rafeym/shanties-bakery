@@ -26,11 +26,14 @@
       & h3 {
         font-size: 1.8rem;
       }
+
+      & .question-icon {
+        font-size: 28px;
+      }
     }
     & .answer {
       max-height: 0;
       overflow: hidden;
-      transition: 1s ease;
 
       & p {
         padding-top: 1rem;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { FaAngleDown } from 'react-icons/fa'
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
 import './Info.scss'
 
 const Info = () => {
@@ -15,7 +15,17 @@ const Info = () => {
       <div className={click ? 'faq active' : 'faq'}>
         <div className='question'>
           <h3 onClick={() => setClick(!click)}>Shipping</h3>
-          <FaAngleDown onClick={() => setClick(!click)} />
+          {click ? (
+            <FaAngleUp
+              className='question-icon'
+              onClick={() => setClick(!click)}
+            />
+          ) : (
+            <FaAngleDown
+              className='question-icon'
+              onClick={() => setClick(!click)}
+            />
+          )}
         </div>
         <div className='answer'>
           <p>
@@ -33,7 +43,17 @@ const Info = () => {
       <div className={click1 ? 'faq active' : 'faq'}>
         <div className='question'>
           <h3 onClick={() => setClick1(!click1)}>Payment</h3>
-          <FaAngleDown onClick={() => setClick1(!click1)} />
+          {click1 ? (
+            <FaAngleUp
+              className='question-icon'
+              onClick={() => setClick1(!click1)}
+            />
+          ) : (
+            <FaAngleDown
+              className='question-icon'
+              onClick={() => setClick1(!click1)}
+            />
+          )}
         </div>
         <div className='answer'>
           <p>
@@ -48,7 +68,17 @@ const Info = () => {
       <div className={click2 ? 'faq active' : 'faq'}>
         <div className='question'>
           <h3 onClick={() => setClick2(!click2)}>Returns</h3>
-          <FaAngleDown onClick={() => setClick2(!click2)} />
+          {click2 ? (
+            <FaAngleUp
+              className='question-icon'
+              onClick={() => setClick2(!click2)}
+            />
+          ) : (
+            <FaAngleDown
+              className='question-icon'
+              onClick={() => setClick2(!click2)}
+            />
+          )}
         </div>
         <div className='answer'>
           <p>
@@ -64,7 +94,17 @@ const Info = () => {
       <div className={click3 ? 'faq active' : 'faq'}>
         <div className='question'>
           <h3 onClick={() => setClick3(!click3)}>Cancellations</h3>
-          <FaAngleDown onClick={() => setClick3(!click3)} />
+          {click3 ? (
+            <FaAngleUp
+              className='question-icon'
+              onClick={() => setClick3(!click3)}
+            />
+          ) : (
+            <FaAngleDown
+              className='question-icon'
+              onClick={() => setClick3(!click3)}
+            />
+          )}
         </div>
         <div className='answer'>
           <p>
