@@ -30,6 +30,12 @@
       background: $black;
     }
   }
+  & .required-title {
+    color: #606060;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 20px;
+  }
 
   & .checkout-form .user-details {
     display: flex;

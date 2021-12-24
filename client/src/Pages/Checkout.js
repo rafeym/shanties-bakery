@@ -15,6 +15,7 @@ import Header from '../components/Navbar/Header'
 import Spinner from '../components/Spinner/Spinner'
 import { FaTruck, FaMoneyBill, FaRegCreditCard } from 'react-icons/fa'
 
+import { toast } from 'react-toastify'
 import './styles/Checkout.scss'
 
 const Checkout = () => {
@@ -55,6 +56,8 @@ const Checkout = () => {
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault()
+
     const data = {
       fname: orderData.fname,
       lname: orderData.lname,
@@ -64,7 +67,19 @@ const Checkout = () => {
       cart,
     }
 
-    dispatch(createOrder(data))
+    const { fname, lname, phone, email, address } = orderData
+
+    if (
+      fname === '' ||
+      lname === '' ||
+      phone === '' ||
+      email === '' ||
+      address === ''
+    ) {
+      toast.error('Please fill in all the required fields.')
+    } else {
+      dispatch(createOrder(data))
+    }
   }
 
   return (
@@ -77,10 +92,13 @@ const Checkout = () => {
           ) : (
             <>
               <div className='checkout-title'>Checkout</div>
+              <div className='required-title'>
+                Fill in all the required fields *
+              </div>
               <form className='checkout-form'>
                 <div className='user-details'>
                   <div className='input-box'>
-                    <span className='details'>First Name</span>
+                    <span className='details'>First Name*</span>
                     <input
                       type='text'
                       placeholder='First Name'
@@ -91,7 +109,7 @@ const Checkout = () => {
                   </div>
 
                   <div className='input-box'>
-                    <span className='details'>Last Name</span>
+                    <span className='details'>Last Name*</span>
                     <input
                       type='text'
                       placeholder='Last Name'
@@ -102,7 +120,7 @@ const Checkout = () => {
                   </div>
 
                   <div className='input-box'>
-                    <span className='details'>Phone Number</span>
+                    <span className='details'>Phone Number*</span>
                     <input
                       type='text'
                       placeholder='Phone Number'
@@ -113,7 +131,7 @@ const Checkout = () => {
                   </div>
 
                   <div className='input-box'>
-                    <span className='details'>Email</span>
+                    <span className='details'>Email*</span>
                     <input
                       type='text'
                       placeholder='Email'
@@ -124,7 +142,7 @@ const Checkout = () => {
                   </div>
 
                   <div className='input-box'>
-                    <span className='details'>Street Address</span>
+                    <span className='details'>Street Address*</span>
                     <input
                       type='text'
                       placeholder='Street Address'
